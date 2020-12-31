@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="i1">
+    <script>
+        let i1 = document.getElementById('i1');
+
+        function fn1(e) {
+            e.stopPropagation();
+            console.group('keydown')
+            console.log(`keydown事件触发于:`);
+            console.log(e.target);
+            console.groupEnd();
+        }
+        i1.addEventListener('keydown', fn1, false);
+        document.addEventListener('keydown', fn1, false);
+    </script>
+</body>
+
+</html>
