@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-test="msg"></div>
+    </div>
+    <script>
+        Vue.directive('test',{
+            bind:function(el,binding){
+                console.log(el.target);
+            }
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg:'some text'
+            },
+            methods: {},
+            filters: {},
+            directives: {},
+            components:{},
+            watch:{},
+            computed:{}
+        });
+    </script>
+</body>
+
+</html>
