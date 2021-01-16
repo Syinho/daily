@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button  onclick="console.log(dataset.val);console.log(this.dataset.val);" id="btn"></button>
+    <script>
+        // document.dataset.val='d_val';
+        document.dataset={};
+        Object.defineProperty(document.dataset, 'val', {
+            configurable: true,
+            enumerable: true,
+            writable: true,
+            value: 'd_val'
+        });
+        let btn = document.getElementById('btn');
+        // console.log(btn.dataset.val);
+        // console.log(window.document);
+        // document.val="d_val";
+        // document.a1 = 'd_a1';
+        // // window.a1 = 'w_a1';
+        // with(document) {
+        //     with(this) {
+        //         console.log(this);
+        //         console.log(a1);
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

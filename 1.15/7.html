@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2"></div>
+    </div>
+
+    <script>
+        const arr=[1,7,8];
+        console.log(arr.includes(7));
+        // 
+        const str='hello world';
+        console.log(str.includes('o w'));
+        // 
+        console.log(str.includes('o w',4));
+        const d1=document.getElementById('d1');
+        const d2=document.getElementById('d2');
+        console.log(d1.contains(d2));
+    </script>
+</body>
+</html>

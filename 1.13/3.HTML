@@ -1,0 +1,49 @@
+<!-- 传入指定类型的值 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <com1 :prop1="num"></com1>
+    </div>
+    <script>
+        Vue.component('com1',{
+            template:'<div>{{msg}}</div>',
+            props:{
+                prop1:{
+                    type:Number
+                }
+            },
+            data(){
+                return{
+                    msg:this.prop1
+                }
+            },
+            mounted(){
+                console.log(typeof this.prop1);
+            }
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+                num:5
+            },
+            methods: {},
+            filters: {},
+            directives: {},
+            components:{},
+            watch:{},
+            computed:{}
+        });
+    </script>
+</body>
+
+</html>

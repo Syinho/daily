@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button v-show="isShow('btn1')">xxx</button>
+        <button @click="del">del</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                chkList: ['btn1']
+            },
+            methods: {
+                isShow(val) {
+                    return this.chkList.includes(val);
+                },
+                del() {
+                    this.chkList.splice(0, 1);
+                }
+            },
+            filters: {},
+            directives: {},
+            components: {},
+            watch: {},
+            computed: {}
+        });
+    </script>
+</body>
+
+</html>

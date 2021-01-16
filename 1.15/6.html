@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="checkbox" name="" id="" value='xx' v-chkbox>
+        <input type="radio" name="r1" id="" v-chkbox>
+        <input type="radio" name="r1" id="" v-chkbox>
+        <input type="radio" name="r1" id="" v-chkbox>
+        <input type="radio" name="r1" id="" v-chkbox>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                chk: []
+            },
+            methods: {},
+            filters: {},
+            directives: {
+                chkbox: {
+                    bind: function (el, binding) {
+                        const val = el.value;
+
+                        function chked(el) {
+                            return el.checked;
+                        }
+
+                        function has(val) {
+                            return this.chk.includes(val);
+                        }
+                        if (chked(el) && !has(val)) {
+                            // 选中且之前没有选中过
+                            this.chk.push(val);
+                        } else if (chked(el) && has(val)) {
+                            
+                        }
+                    }
+                }
+            },
+            components: {},
+            watch: {
+                chk(newVal) {
+                    console.log(newVal);
+                },
+                chk1(newVal) {
+                    console.log(newVal);
+                },
+                chk2(newVal) {
+                    console.log(`chk2:${newVal}`);
+                }
+            },
+            computed: {}
+        });
+    </script>
+</body>
+
+</html>

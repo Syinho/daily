@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="radio" name="" id="i1" value='0' v-model="rd1">xxx
+        <button @click="change" id="btn">change</button>
+    </div>
+    <script>
+        let i1 = document.getElementById('i1');
+        let btn = document.getElementById('btn')
+        btn.addEventListener('click', (ev) => {
+            console.log(i1.value);
+        }, false);
+    </script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                rd1: ''
+            },
+            methods: {
+                change() {
+                    if (this.rd1 == '') {
+                        this.rd1 = 0;
+                    } else if (this.rd1 == 0) {
+                        this.rd1 = '';
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

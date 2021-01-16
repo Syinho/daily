@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <com1 @on-click="handle"></com1>
+        </div>
+    </div>
+    <script>
+        Vue.component('com1', {
+            template: `<div>
+                <button @click="handle($event)" value="xxx">sdfsdgs</button>    
+            </div>`,
+            data() {
+                return {
+                    mas: 5444
+                }
+            },
+            methods: {
+                handle(ev) {
+                    this.$emit('on-click', ev.target.value, this.mas);
+                }
+            }
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {},
+            methods: {
+                handle(val, msg) {
+                    console.log(val);
+                    console.log(msg);
+                }
+            },
+            filters: {},
+            directives: {},
+            components: {},
+            watch: {},
+            computed: {}
+        });
+    </script>
+</body>
+
+</html>

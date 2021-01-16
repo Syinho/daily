@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="getele"></button>
+        <com1></com1>
+    </div>
+    <script>
+        Vue.component('com1',{
+            name:'com1',
+            template:`
+            <div>
+                <button></button>
+            </div>`
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {},
+            methods: {
+                getele(){
+                    const el=this.$children.filter((item,index,arr)=>{
+                        return item.$options.name=='com1';
+                    });
+                    console.log(el);
+                }
+            },
+            filters: {},
+            directives: {},
+            components:{},
+            watch:{},
+            computed:{}
+        });
+    </script>
+</body>
+
+</html>

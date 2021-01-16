@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="handle">++</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                datas: {
+                    a: 77,
+                    b: 86
+                }
+            },
+            methods: {
+                handle() {
+                    this.datas.a++;
+                    this.datas.b++;
+                }
+            },
+            filters: {},
+            directives: {},
+            components: {},
+            watch: {
+               'datas':{
+                   handler:function(newVal){
+                       console.log(newVal);
+                   },
+                   deep:true
+               }
+            },
+            computed: {
+                a:function(){
+                    return this.datas.a;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+// 'datas':{
+    //     handler:function(newVal){
+    //         console.log(this.datas);
+    //     },
+    //     deep:true
+    // }
+    // datas: function(newVal){
+    //     console.log(this.datas);
+    // },
+    // deep: true
+    // 'datas.a':{
+    //     handler:function(newVal){
+    //         console.log(this.datas);
+    //     }
+    // }

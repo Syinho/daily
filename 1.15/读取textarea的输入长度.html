@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <textarea name="" id="" cols="30" rows="10" v-model="msg"></textarea>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg:''
+            },
+            methods: {},
+            filters: {},
+            directives: {},
+            components:{},
+            watch:{
+                msg(newVal){
+                    console.log(newVal.length);
+                }
+            },
+            computed:{}
+        });
+    </script>
+</body>
+
+</html>

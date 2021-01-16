@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="radio" name="" id="" :checked='chk'>
+        <button @click="change">change</button>
+        <input type="checkbox" name="" id="" :checked='chk'>
+        <hr>
+        <input type="checkbox" name="" id="">
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                chk: true,
+                obj:{
+                    a:7
+                }
+            },
+            methods: {
+                change() {
+                    this.chk = !this.chk;
+                }
+            },
+            filters: {},
+            directives: {},
+            components: {},
+            watch: {
+                obj[a](newVal){
+                    
+                }
+            },
+            computed: {}
+        });
+    </script>
+</body>
+
+</html>

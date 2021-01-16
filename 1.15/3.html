@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="r1">r1</label>
+    <input type="radio"  id="r1" name="ra">
+    <input type="radio"  id="r2" name="ra">
+    <input type="radio"  id="r3" name="ra">
+
+    <script>
+        let r1=document.getElementById('r1');
+        r1.addEventListener('click',(ev)=>{
+            console.log('触发');
+        })
+    </script>
+</body>
+</html>

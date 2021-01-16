@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let text = 'mom and dad and baby';
+        // let pattern = /mom( and dad( and baby)?)?/g;
+        // let matches=pattern.exec(text);
+        // console.log(matches);
+        // console.log(matches.input);
+        // console.log(matches.index);
+        // console.log(matches.length);
+        // console.log(matches[0]);
+        // console.log(matches[1]);
+        // console.log(matches[2]);
+
+        // let text = 'cat,bat,sat,fat';
+        // let pattern = /.at/g;
+        // let matches = pattern.exec(text);
+        // console.log(matches.length);
+        // for (let i = 0; i < matches.length; i++) {
+        //     console.group(`第${i}项匹配项`);
+        //     console.log(matches.index);
+        //     console.log(matches[0]);
+        //     console.log(pattern.lastIndex);
+        //     console.groupEnd();
+        // }
+
+
+        let text = 'cat,bat,hat,fat';
+        let pattern = /.at/;
+        let matches = pattern.exec(text);
+        console.log(matches[0]);
+        console.log(matches.index);
+        console.log(pattern.lastIndex);
+        matches = pattern.exec(text);
+        console.log(matches[0]);
+        console.log(matches.index);
+        console.log(pattern.lastIndex);
+        matches = pattern.exec(text);
+        console.log(matches[0]);
+        console.log(matches.index);
+        console.log(pattern.lastIndex);
+    </script>
+</body>
+
+</html>

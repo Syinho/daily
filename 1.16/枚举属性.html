@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            a: 7,
+            b: 5,
+            c: 55
+        };
+        for(let props in obj){
+            obj[props]='';
+        }
+        console.log(obj);
+        let arr=[];
+        let str='';
+        console.log(Array.isArray(arr));
+        // 
+        let reg=/ (\w+)]/g;
+        console.log(Object.prototype.toString.call(str));
+        if(reg.test(Object.prototype.toString.call(str))){
+            console.log(RegExp.$1);
+        }
+    </script>
+</body>
+
+</html>
