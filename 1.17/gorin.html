@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quo aperiam placeat ducimus, nostrum excepturi dolore tempora ullam molestias. Temporibus molestiae, cumque deserunt magni laborum rerum dicta fugit similique praesentium voluptate? Voluptatibus iusto sint similique corrupti soluta, at, quos eum libero quae, mollitia dicta quaerat velit laudantium! Repudiandae, aliquam dolore nihil facilis quibusdam at! Quasi voluptas obcaecati quae necessitatibus incidunt aperiam ipsum nihil labore, pariatur voluptatum modi nobis laboriosam dolor repellat vero ex dolorem rerum corrupti ut numquam saepe harum dolorum exercitationem aspernatur? Soluta minima enim eaque dolores ipsa earum, vitae reiciendis aperiam labore sapiente, omnis, unde nostrum voluptates voluptas! Laborum.
+    <script>
+        let obj = {
+            a: 'sdss',
+            b: [1, 5, 7],
+            c: 'dssd'
+        };
+
+        for (const props in obj) {
+            let reg = / (\w+)/g;
+           
+            if (reg.test(Object.prototype.toString.call(obj[props]))) {
+                console.log(`判定成功`);
+                console.log(RegExp.$1);
+                if(RegExp.$1=='String'){
+                    console.log(`判定字符串成功`);
+                }else if(RegExp.$1=='Array'){
+                    console.log(`判定数组成功`);
+                }
+            }
+        }
+        let str='fdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff';
+        console.log(str.length);
+    </script>
+</body>
+
+</html>

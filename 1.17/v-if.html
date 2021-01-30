@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <img src="../img/0329f4a8d61bc2247b9e0954c4210153.jpeg" v-if="isShow(0)">
+        <img src="../img/17583d2dbd67fa8749fb0dec0d027801.jpeg" alt="" v-else-if="isShow(1)">
+        <img src="../img/19c53f49e739b7649ab92218d39f62aafab344d8.png" alt="" v-else="isShow(2)">
+        <hr>
+        <button @click="increase">++</button>
+        <button @click="decrease">--</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                num: 0
+            },
+            methods: {
+                increase() {
+                    this.num++;
+                },
+                decrease() {
+                    this.num--;
+                },
+                isShow(num) {
+                    return this.num == num;
+                }
+            },
+            filters: {},
+            directives: {},
+            components: {},
+            watch: {},
+            computed: {}
+        });
+    </script>
+</body>
+
+</html>

@@ -11,7 +11,7 @@
 
 <body>
     <div id="app">
-        <input type="checkbox" name="" id="" value='xx' v-chkbox>
+        <input type="checkbox" name="" id="" value='xx' v-chkbox="">
         <input type="radio" name="r1" id="" v-chkbox>
         <input type="radio" name="r1" id="" v-chkbox>
         <input type="radio" name="r1" id="" v-chkbox>
@@ -40,8 +40,8 @@
                         if (chked(el) && !has(val)) {
                             // 选中且之前没有选中过
                             this.chk.push(val);
-                        } else if (chked(el) && has(val)) {
-                            
+                        } else if (!chked(el) && has(val)) {
+
                         }
                     }
                 }

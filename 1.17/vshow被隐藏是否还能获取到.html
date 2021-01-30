@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <com v-show="false" :num=154></com>
+        <com v-show="true" :num=25></com>
+        <com v-show="false" :num=35></com>
+        <button @click="getCom">getCom</button>
+    </div>
+    <script>
+        Vue.component('com', {
+            name: 'com',
+            template: `<div>
+                <button>{{num}}</button>
+            </div>`,
+            props: {
+                num: {
+                    type: Number
+                }
+            },
+            data() {
+                return {
+
+                }
+            }
+        });
+        var app = new Vue({
+            el: "#app",
+            data: {},
+            methods: {
+                getCom() {
+                    let coms = this.$children.filter((item, index, arr) => {
+                        return item.$options.name == 'com';
+                    });
+                    let showCom = coms.filter((item, index, arr) => {
+                        return item.$el.style.display != 'none';
+                    });
+                    
+                    console.log(showCom);
+                }
+            },
+            filters: {},
+            directives: {},
+            components: {},
+            watch: {},
+            computed: {}
+        });
+    </script>
+</body>
+
+</html>

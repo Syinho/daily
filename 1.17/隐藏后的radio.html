@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="change">changeShow</button>
+        <radio :is-show="isShow"></radio>
+    </div>
+    <script>
+        Vue.component('radio', {
+            name: 'radio',
+            template: `
+            <div>
+                <input type="radio" :checked="chk" v-show="isShow">    
+            </div>
+            `,
+            props: {
+                isShow: {
+                    type: Boolean
+                }
+            },
+            data(){
+                return {
+                    chk:true
+                }
+            }
+        })
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: true
+            },
+            methods: {
+                change() {
+                    this.isShow = !this.isShow;
+                }
+            },
+            filters: {},
+            directives: {},
+            components: {},
+            watch: {},
+            computed: {}
+        });
+    </script>
+</body>
+
+</html>
