@@ -47,22 +47,22 @@ const config = {
             use: [{
                 loader: 'url-loader',
                 options: {
-                    limit: 8 * 1024,
-                    esModule: false,
                     filename: '[hash:10].[ext]',
-                    outputPath: 'imgs'
+                    outputPath: 'images',
+                    limit: 8 * 1024,
+                    esModule: false
                 }
             }]
         }, {
             test: /\.html$/,
             use: ['html-loader']
         }, {
-            exclude: /\.(jpg|jpeg|gif|png|html|css|less|js)$/,
+            exclude: /(jpg|jpeg|png|gif|js|css|less|html)$/,
             use: [{
                 loader: 'file-loader',
                 options: {
-                    filename: '[hash:10].[ext]',
-                    outputPath: 'media'
+                    outputPath: 'media',
+                    filename: '[hash:10].[ext]'
                 }
             }]
         }, {
@@ -81,21 +81,19 @@ const config = {
                 loader: 'babel-loader',
                 options: {
                     presets: [
-                        ['@babel/preset-env',
-                            {
-                                useBuiltIns: 'usage',
-                                corejs: {
-                                    version: 3
-                                },
-                                targets: {
-                                    chrome: '60',
-                                    firefox: '60',
-                                    ie: '9',
-                                    safari: '10',
-                                    edge: '17'
-                                }
+                        ['@babel/preset-env', {
+                            useBuiltIns: 'usage',
+                            corejs: {
+                                version: 3
+                            },
+                            targets: {
+                                chrome: '60',
+                                firefox: '60',
+                                ie: '9',
+                                safari: '10',
+                                edge: '17'
                             }
-                        ]
+                        }]
                     ]
                 }
             }]
@@ -115,7 +113,7 @@ const config = {
         contentBase: join(__dirname, '/dist'),
         compress: true,
         port: 3000,
-        openb: true
+        open: true
     }
 };
 module.exports = config;
