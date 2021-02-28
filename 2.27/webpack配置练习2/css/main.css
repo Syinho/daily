@@ -1,0 +1,7 @@
+#app1 {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: black;
+    transition: all .5s ease-in;
+}
