@@ -55,7 +55,10 @@
     ]
   },
   "eslintConfig": {
-    "extends": "airbnb-base"
+    "extends": "airbnb-base",
+    "env": {
+      "browser": true
+    }
   },
   "resolutions": {
     "@babel/preset-env": "^7.8.4"
