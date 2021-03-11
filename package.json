@@ -63,5 +63,8 @@
   },
   "resolutions": {
     "@babel/preset-env": "^7.8.4"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0"
   }
 }
