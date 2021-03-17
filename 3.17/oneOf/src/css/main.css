@@ -1,0 +1,7 @@
+#app1 {
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+    background-color: firebrick;
+    transition: all .5s;
+}

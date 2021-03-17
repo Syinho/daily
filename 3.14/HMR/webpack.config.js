@@ -2,9 +2,14 @@ const {
     join
 } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const commonCssLoader = ['style-loader', 'css-loader', {
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const commonCssLoader = [{
+    loader: MiniCssExtractPlugin.loader,
+    options: {
+        publicPath: '../'
+    }
+}, 'css-loader', {
     loader: 'postcss-loader',
     options: {
         ident: 'postcss',
@@ -12,7 +17,7 @@ const commonCssLoader = ['style-loader', 'css-loader', {
     }
 }];
 
-// process.env.NODE_ENV = "development";
+process.env.NODE_ENV = "development";
 
 module.exports = {
     entry: ['./src/js/index.js', './src/html/index.html'],
@@ -94,8 +99,13 @@ module.exports = {
                 collapseWhitespace: true,
                 removeComments: true
             }
-        })
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'css/[contenthash:10].css'
+        }),
+        new OptimizeCssAssetsWebpackPlugin()
     ],
+    devtool: 'eval-cheap-module-source-map',
     mode: 'development',
     devServer: {
         contentBase: join(__dirname, '/dist'),

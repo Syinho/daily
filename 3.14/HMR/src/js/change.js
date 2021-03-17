@@ -7,11 +7,11 @@ function change() {
       count++;
     } else {
       oDiv.style.backgroundColor = 'indianred';
-      count--;
+      count++;
     }
   }, false);
   // eslint-disable-next-line
-    console.log('change.js被调用');
+    console.log('change.js被调用')();
 }
 
 export default change;
