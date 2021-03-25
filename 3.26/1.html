@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box" class="wrap">
+        <button id="btn">测试</button>
+        <br>
+        <input type="text" name="msg1"><br>
+        <input type="text" name="msg2"><br>
+    </div>
+    <script src="../resource/jquery-3.3.1.js"></script>
+    <script>
+        // $(function () {
+        //     $('#btn2').click(function () {
+        //         alert($('#username').val());
+        //     })
+        // })
+        console.log(typeof $); // function 
+        console.log($ === jQuery); // true
+        console.log($ === window.jQuery); // true
+        console.log(typeof $()); // object
+
+        /* 
+            需求1：点击按钮：显示按钮的文本，显示一个新的输入框
+            需求2：遍历输出数组中所有元素值
+            需求3：去掉 “ my atguigu ” 两端的空格
+        */
+        /* 
+             1) 参数为函数：当DOM加载完成后，执行此回调函数
+             2) 参数为选择器字符串：查找所有匹配的字符串，查找结果放在一个伪数组对象中，并将它们封装成Jquery对象
+             3) 参数为DOM对象：将DOM对象封装成jQuery对象
+             4) 参数为html标签字符串，创建标签对象并封装成jQuery对象
+        */
+        $(function () {
+            $('#btn').click(function () {
+                alert(this.innerHTML);
+            })
+        })
+    </script>
+</body>
+
+</html>
