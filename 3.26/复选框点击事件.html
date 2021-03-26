@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="checkbox" name="" id="cr"><label for="cr">我已经阅读了上面制度</label>
+
+    <script src="../resource/jquery-3.3.1.js"></script>
+    <script>
+        // $(document).ready(function () {
+        //     var $cr = $('#cr');
+        //     var cr = $cr[0];
+        //     $cr.click(function () {
+        //         if (cr.checked) {
+        //             alert('checked');
+        //         }
+        //     })
+        // })
+
+        $(() => {
+            $('#cr').click(() => {
+                if ($('#cr').is(':checked')) {
+                    alert('checked');
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

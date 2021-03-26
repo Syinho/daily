@@ -33,16 +33,30 @@
             需求3：去掉 “ my atguigu ” 两端的空格
         */
         /* 
-             1) 参数为函数：当DOM加载完成后，执行此回调函数
+             1) 参数为函数：当DOM加载完成后，执行此回调函数（当做window.onload）
+                $(function(){})
              2) 参数为选择器字符串：查找所有匹配的字符串，查找结果放在一个伪数组对象中，并将它们封装成Jquery对象
+                $('#app');  $('.app');  $('div');
              3) 参数为DOM对象：将DOM对象封装成jQuery对象
              4) 参数为html标签字符串，创建标签对象并封装成jQuery对象
         */
         $(function () {
             $('#btn').click(function () {
-                alert(this.innerHTML);
+                alert($(this).html());
             })
         })
+        // 需求2：遍历输出数组中所有元素值
+
+        const arr = [4, 7, 5, 1];
+        $.each(arr, function (index, value) {
+            console.log(index + ' ' + value);
+        });
+
+        // 需求3：去掉 “ my atguigu ” 两端的空格
+
+        let str = ' my atguign ';
+        console.log('---' + str.trim() + '---');
+        console.log('---' + $.trim(str) + '---');
     </script>
 </body>
 
