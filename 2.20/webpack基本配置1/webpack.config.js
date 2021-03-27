@@ -5,7 +5,7 @@ const {
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-process.env.NODE_ENV = "development";
+process.env.NODE_ENV = "production";
 
 const config = {
     entry: './js/index.js',
@@ -68,7 +68,7 @@ const config = {
         }),
         new OptimizeCssAssetsWebpackPlugin()
     ],
-    mode: 'development',
+    mode: 'production',
     devServer: {
         contentBase: join(__dirname, '/dist'),
         compress: true,

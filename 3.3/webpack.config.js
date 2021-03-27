@@ -19,7 +19,7 @@ const commonCssLoader = [{
     }
 }];
 
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'production';
 
 const config = {
     entry: './src/js/index.js',
@@ -105,7 +105,7 @@ const config = {
         }),
         new OptimizeCssAssetsPlugin()
     ],
-    mode: 'development',
+    mode: 'production',
     devServer: {
         contentBase: join(__dirname, '/dist'),
         compress: true,
