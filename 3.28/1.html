@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 300px;
+            transition: all .5s linear;
+        }
+
+        .box1 {
+            background-color: indianred;
+        }
+
+        .box2 {
+            background-color: khaki;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="ul1">
+        <li title="a">aaa</li>
+        <li title="b">bbb</li>
+    </ul>
+    <ul id="ul2"></ul>
+    <button id="btn">click</button>
+
+    <strong>some text</strong>
+    <strong>other some text</strong>
+
+    <div id="d1" class="box1"></div>
+
+    <select name="" id="s1" multiple style="height: 50px;">
+        <option>text1</option>
+        <option>text2</option>
+        <option>text3</option>
+    </select>
+    <input type="radio" id="r1" value="radio1">radio1
+    <input type="radio" id="r1" value="radio2">radio2
+    <input type="radio" id="r1" value="radio3">radio3
+    <input type="checkbox" name="fruit" value="orange">orange
+    <input type="checkbox" name="fruit" value="banana">banana
+    <input type="checkbox" name="fruit" value="strawberry">strawberry
+
+
+
+    <script src="../resource/jquery-3.3.1.js"></script>
+    <script>
+        // console.log($('#ul1').length);
+        // $('#ul2').append($li);
+        // console.log($('#ul1>li:eq(1)').length);
+        // let $li = $('#ul1>li:eq(1)').remove();
+        // $('#ul2').append($li);
+
+        // $('#ul1>li:eq(1)').appendTo($('#ul2'));
+
+        // $('#ul1>li').remove('li[title=a]');
+
+        // $('#ul1>li:eq(1)').click(function () {
+        //     alert($(this).html());
+        // });
+        // var $li = $('#ul1>li:eq(1)').detach();
+        // $li.appendTo($('#ul2'));
+
+        // $('#ul1>li:eq(0)').empty();
+        // $('#ul1').empty();
+
+        // $('#ul1>li').click(function () {
+        //     $(this).clone().appendTo($('#ul2'));
+        // })
+        // $('#btn').click(function () {
+        //     $(this).clone(true).appendTo('body');
+        // });
+
+        // $('#ul1>li:eq(1)').replaceWith('<li title="c">ccc</li>');
+        // $('<li title="d">ddd</li>').replaceAll($('#ul1>li:eq(1)'));
+
+        // $('strong').wrapInner('<b></b>');
+        // $('#ul1>li:eq(0)').attr({
+        //     'title': 'aa',
+        //     id: 'li1'
+        // });
+
+        // $('#ul1>li:eq(0)').removeAttr('title');
+
+        // console.log($('#ul1>li:eq(0)').attr('title'));
+
+        // $('#d1').addClass('box2');
+
+        // $(function(){
+        //     $('#btn').click(function(){
+        //         $('#d1').toggleClass('box1');
+        //     })
+        // })
+
+        $(function () {
+            // alert($('#btn').html());
+            // alert($('ul').html());
+
+            // $('strong:eq(0)').html('<span style="color:red;">Hello</span>')
+
+            // $('strong:eq(0)').text('Hello');
+            // $('#s1').val(["text2", "text3"]);
+            // $(':radio').val(["radio2"]);
+            // $(':checkbox').val(["orange", "strawberry"]);
+
+            // console.log($('ul').children().length);
+            // console.log($('ul').children('li[title=a]'));
+            // console.log($('#ul1>li:eq(0)').siblings().attr('title'));
+            console.log($('#ul1>li:eq(0)').closest('li')[0]);
+            console.log($('#ul1>li:eq(0)').closest('ul')[0]);
+            
+            
+            
+        })
+    </script>
+</body>
+
+</html>
