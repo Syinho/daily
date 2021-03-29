@@ -113,10 +113,12 @@
             // console.log($('ul').children().length);
             // console.log($('ul').children('li[title=a]'));
             // console.log($('#ul1>li:eq(0)').siblings().attr('title'));
-            console.log($('#ul1>li:eq(0)').closest('li')[0]);
-            console.log($('#ul1>li:eq(0)').closest('ul')[0]);
+            // console.log($('#ul1>li:eq(0)').closest('li')[0]);
+            // console.log($('#ul1>li:eq(0)').closest('ul')[0]);
             
+            console.log($('#ul1>li:eq(0)').parent('body').length);
             
+            console.log($('#ul1>li:eq(0)').parents('body')[0]);
             
         })
     </script>

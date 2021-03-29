@@ -35,7 +35,7 @@
 			"<body>",
 			"\t$1",
 			"",
-			"\t<script src=\"../resource/jquery-3.3.1.js\"></script>",
+			"\t<script src=\"../resource/jquery-1.7.2/jquery.js\"></script>",
 			"\t<script>",
 			"\t\t$2",
 			"\t</script>",

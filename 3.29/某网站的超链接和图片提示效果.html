@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <p><a href="#" class="tooltip" title="这是我的超链接提示1">提示1.</a></p>
+    <p><a href="#" class="tooltip" title="这是我的超链接提示2">提示2.</a></p>
+    <p><a href="#" title="这是自带的提示1.">自带提示1.</a></p>
+    <p><a href="#" title="这是自带的提示2.">自带提示2.</a></p>
+
+    <script src="../resource/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            $('a.tooltip').mouseover(function (e) {
+                let el = `<div id="tooltip">${this.title}</div>`;
+                $('body').append(el);
+                $('#tooltip').css({
+                    "top": e.pageY + 'px',
+                    "left": e.pageX + 'px'
+                }).show('fast');
+            }).mouseout(function () {
+                $('#tooltip').remove();
+            });
+        })
+    </script>
+</body>
+
+</html>

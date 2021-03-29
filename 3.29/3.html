@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        #test {
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            cursor: pointer;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            /* display: none; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test"></div>
+    <button id="btn">Click</button>
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        // $('#btn').toggle(function () {
+        //     $('#btn').prev().slideDown();
+        // }, function () {
+        //     $('#btn').prev().slideUp();
+        // })
+
+        // $('#test').click(function () {
+        //     $(this).animate({
+        //         left: '500px'
+        //     }, 3000);
+        // })
+
+        // $('#test').click(function () {
+        //     $(this).animate({
+        //         left: "+=100px"
+        //     }, 3000);
+        // })
+
+        // $('#test').click(function () {
+        //     $('#test').animate({
+        //         left: '500px',
+        //         height: '300px'
+        //     }, 3000);
+        // })
+        // $('#test').css({
+        //     "opacity": "50%"
+        // });
+        // $('#test').click(function () {
+        //     $(this).animate({
+        //         left: '400px',
+        //         'height': '200px',
+        //         'opacity': '1'
+        //     }, 3000).animate({
+        //         'top': '200px',
+        //         'wdith': '200px'
+        //     }, 3000).fadeOut("1000");
+        // })
+
+        // $('#test').click(function () {
+        //     $(this).animate({
+        //         'top': '200px',
+        //         'left': '300px'
+        //     }, 2000).animate({
+        //         'width': '300px'
+        //     }, 2000,function(){
+        //         $(this).css('border','5px solid orange');
+        //     })
+        // });
+
+        // $('#test').hover(function () {
+        //     $(this).stop(true,true).animate({
+        //         'height': '300px'
+        //     }, 2000).animate({
+        //         'width': '300px'
+        //     }, 2000)
+        // }, function () {
+        //     $(this).stop(true,true).animate({
+        //         'height': '50'
+        //     }, 2000).animate({
+        //         'width': '100'
+        //     }, 2000)
+        // });
+
+        // $('#test').click(function () {
+        //     $(this).delay(2000).animate({
+        //         'width': '300px',
+        //         'height': '300px'
+        //     }, 2000);
+        // })
+        $('#btn').click(function(){
+            $('#test').fadeToggle(3000);
+        })
+    </script>
+</body>
+
+</html>

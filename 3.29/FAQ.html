@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        #pane1 {
+            width: 300px;
+            border: 2px solid indianred;
+            border-radius: 15px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            transition: all 1s ease;
+        }
+
+        .head {
+            font-style: italic;
+            font-size: 25px;
+            color: lightseagreen;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .content {
+            text-indent: 2em;
+            display: none;
+        }
+
+        #test {
+            width: 150px;
+            height: 150px;
+            /* transition: 1s; */
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pane1">
+        <h5 class="head">Lorem, ipsum.</h5>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, ea neque? Ea veniam
+            expedita placeat maxime ut sed sapiente cumque.</div>
+    </div>
+    <hr>
+    <button id="btn">Click</button>
+    <button id="btn1">unbind event</button>
+    <hr>
+    <div id="test"></div>
+
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        $(function () {
+            // $('#pane1 h5.head').bind('click', function () {
+            //     var $content = $(this).next();
+            //     if ($content.is(":visible")) {
+            //         $content.hide();
+            //     } else {
+            //         $content.show();
+            //     }
+            // })
+
+            // $('#pane1 h5.head').hover(function () {
+            //     $(this).next().show();
+            // }, function () {
+            //     $(this).next().hide();
+            // })
+            // $('#pane1 h5.head').toggle(function () {
+            //     $(this).next().show();
+            // }, function () {
+            //     $(this).next().hide();
+            // });
+
+            // $('#pane1 h5.head').toggle(function () {
+            //     $(this).next().toggle();
+            // }, function () {
+            //     $(this).next().toggle();
+            // })
+
+            // $(element).bind('click',function(event){
+            //     // some code
+            //     event.stopPropagation();
+            // })
+
+            // $('#btn').bind('ev1', fn1);
+            // $('btn').trigger('ev1');
+
+            // $('#btn').bind('click', function (event, msg) {
+            //     if (msg) {
+            //         alert('代码触发');
+            //     } else {
+            //         alert('人为触发');
+            //     }
+            // });
+
+            // $('#btn1').bind('click',function(event){
+            //     $('#btn').trigger('click',['xxx']);
+            // });
+
+            // $('#pane1 h5.head').bind('mouseover mouseout', function () {
+            //     $(this).next().toggle()
+            // })
+
+            // $('#btn').bind('click.plugin',function(event){
+            //     $('body').append('<p>click事件</p>');
+            // });
+            // $('#btn').bind('mouseover.plugin',function(event){
+            //     $('body').append('<p>mouseover事件</p>');
+            // });
+            // $('#btn1').bind('click',function(event){
+            //     $('#btn').unbind('.plugin');
+            // });
+
+            // $('#btn').bind('click', function () {
+            //     $('body').append('<p>click事件</p>');
+            // });
+            // $('#btn').bind('click.plugin', function () {
+            //     $('body').append('<p>click.plugin事件</p>');
+            // });
+            // $('#btn1').bind('click', function () {
+            //     $('#btn').trigger('click!');
+            //     // 感叹号匹配所有所有不包含命名空间中的click方法，即只触发click事件
+            // });
+
+            // $('#pane1 h5.head').toggle(function () {
+            //     $(this).next().fadeOut();
+            // }, function () {
+            //     $(this).next().fadeIn();
+            // })
+
+            $('#test').toggle(function () {
+                $(this).slideUp();
+            }, function () {
+                $(this).slideDown();
+            });
+        })
+    </script>
+</body>
+
+</html>
