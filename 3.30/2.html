@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        li {
+            list-style: none;
+            width: 200px;
+            height: 50px;
+            border: 1px solid black;
+            cursor: pointer;
+            /* background-color: brown; */
+
+        }
+
+        .brown {
+            background-color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="nav">
+        <li class="brown">A</li>
+        <li class="brown">B</li>
+        <li class="brown">C</li>
+        <li class="brown">D</li>
+    </ul>
+
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        $(function () {
+            // $('#nav li').bind('mouseover', function () {
+            //     $(this).addClass('brown');
+            // }).bind('mouseout', function () {
+            //     $(this).removeClass('brown');
+            // })
+
+            $('#nav li').bind('click', function () {
+                $('#nav li').each(function (index, value) {
+                    $(this).removeClass('brown');
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

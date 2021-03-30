@@ -1,0 +1,7 @@
+#app1{
+    width: 100px;
+    height: 100px;
+    background-color: hotpink;
+    transition: all .5s;
+    cursor: pointer;
+}

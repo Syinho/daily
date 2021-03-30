@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        #pane1 {
+            border: 3px solid skyblue;
+            width: 250px;
+            margin: 50px;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: all .5s;
+        }
+
+        .head {
+            color: cornflowerblue;
+            text-align: center;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 15px;
+            text-indent: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pane1">
+        <h5 class="head">Lorem, ipsum.</h5>
+        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eligendi est sint illo enim
+            fugit?</div>
+    </div>
+
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#pane1>h5.head').toggle(function (event) {
+                $(this).next().slideDown();
+                // event.stopPropagation();
+            }, function (event) {
+                $(this).next().slideUp();
+            })
+        })
+    </script>
+</body>
+
+</html>

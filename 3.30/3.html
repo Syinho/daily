@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            list-style: none;
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+            visibility: visible;
+        }
+        .curr{
+            background-color: rosybrown;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="nav">
+        <li class="cur curr">aaa</li>
+        <li class="cur">bbb</li>
+        <li class="cur">ccc</li>
+        <li class="cur">ddd</li>
+    </ul>
+
+    <ul id="nav2">
+        <li>qqq</li>
+        <li>uuu</li>
+    </ul>
+
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        // $(function(){
+        //     $('#nav>li').each(function(index,value){
+        //         console.log(index);
+        //         console.log(value.tagName);
+        //     })
+        // })
+
+        // $(function () {
+        //     $('#nav>li').each(function () {
+        //         $(this).bind('click', function () {
+        //             $(this).attr({
+        //                 'style': 'background-color:brown;'
+        //             })
+        //         })
+        //     })
+        // })
+
+        // visible的可以被fadeIn吗
+        $(function(){
+            // $('#nav>li').each(function(){
+            //     $(this).mouseover(function(){
+            //         $(this).fadeOut();
+            //     }).mouseout(function(){
+            //         $(this).fadeIn();
+            //     })
+            // })
+
+            $('#nav>li').click(function(){
+                $(this).attr('style','background-color:red;');
+                if($(this).hasClass('curr')){
+                    $('#nav2>li').each(function(index){
+                        $(this).toggleClass('curr');
+                    })
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
