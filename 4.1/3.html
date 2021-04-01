@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li class="cur"></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <hr>
+    <button id="btn">Click</button>
+
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#btn').click(function () {
+                $('ul>li').each(function (index, value) {
+                    if ($(this).hasClass('cur')) {
+                        let i=index;
+                        i++;
+                        
+                        $('ul>li').removeClass('cur');
+                        $(`ul>li:eq(${i})`).addClass('cur');
+                        // each内的回调函数本身要执行四次
+                        // 第二次时就已经被更改了cur类，变为第三个
+                        // 
+
+                        console.log(i);
+                        return;
+                        
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
