@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        /* reset end */
+        #main {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #items,
+        #choice,
+        #del {
+            width: 90%;
+            height: 200px;
+            border: 2px solid indianred;
+            margin: 5px auto;
+        }
+
+        #items {
+            background-color: tan;
+        }
+
+        #choice {
+            background-color: teal;
+        }
+
+        #del {
+            background-color: palevioletred;
+        }
+
+        #main>div>div {
+            width: 100px;
+            height: 100px;
+            background-color: lightseagreen;
+            border-radius: 15px;
+            margin: 5px;
+            float: left;
+            cursor: move;
+            text-align: center;
+            padding: 15px;
+            transition: all .5s;
+        }
+
+        #main>div>div:hover {
+            box-shadow: 5px 5px 5px grey;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="items">
+            <h3>选择喜欢的项目，将其拖入选中区</h3>
+            <div>first</div>
+            <div>second</div>
+            <div>third</div>
+            <div>forth</div>
+            <div>fifth</div>
+        </div>
+        <div id="choice">
+            <h3>选中区</h3>
+        </div>
+        <div id="del">
+            <h3>将选中区中要删除的拖入到该区中</h3>
+        </div>
+    </div>
+    <script>
+        const items = document.getElementById('items');
+        const choice = document.getElementById('choice');
+        const del = document.getElementById('del');
+
+        document.addEventListener('dragover', (ev) => {
+            ev.preventDefault();
+        }, false);
+
+        document.addEventListener('drop', (ev) => {
+            ev.preventDefault();
+        }, false);
+        Array.prototype.forEach.call(items.getElementsByTagName('div'), (item, index, arr) => {
+            item.setAttribute('draggable', true);
+        });
+
+        Array.prototype.forEach.call(items.getElementsByTagName('div'), (item, index, arr) => {
+            item.addEventListener('dragstart', (ev) => {
+                ev.dataTransfer.setData('text/plain', "<item>" + ev.target.innerHTML);
+            }, false);
+        });
+
+
+        choice.addEventListener('drop', (ev) => {
+            let data = ev.dataTransfer.getData('text/plain');
+            if (data.indexOf('<item>') == 0) {
+                let newEle = document.createElement('div');
+                newEle.innerHTML = data.substring(6);
+                newEle.draggable = true;
+                newEle.id = new Date().getTime();
+                choice.appendChild(newEle);
+            }
+        });
+        choice.addEventListener('dragstart', (ev) => {
+            ev.dataTransfer.setData('text/plain', "<remove>" + ev.target.id );
+        }, false);
+        del.addEventListener('drop', (ev) => {
+            let data = ev.dataTransfer.getData('text/plain');
+            if (data.indexOf('<remove>') == 0) {
+                let el = document.getElementById(data.substring(8));
+                choice.removeChild(el);
+            }
+        }, false);
+    </script>
+</body>
+
+</html>

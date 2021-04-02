@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1 {
+
+            /* background-color: peachpuff; */
+            background: url('../img/0329f4a8d61bc2247b9e0954c4210153.jpeg') no-repeat center / cover;
+        }
+
+        div {
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d1" style="width: 200px; height: 200px;"></div>
+    <button id="btn">copy</button>
+    <script>
+        // let str='hfjsfhius/dhgsjfhshfksj';
+        // let reg=/(\w+)\/(\w+)/gi;
+        // if(reg.test(str)){
+        //     console.log(RegExp.$1);
+        //     console.log(RegExp.$2);
+        // }
+        const oDiv = document.getElementById('d1');
+        const oBtn = document.getElementById('btn');
+        oBtn.addEventListener('click', (ev) => {
+            // let _style=ev.target.style;
+            // console.log(_style.toString());
+            // let newEle=document.createElement('div');
+            // newEle.style=_style;
+            // document.body.appendChild(newEle);
+            // let newEle = document.createElement('div');
+            // newEle.style = window.getComputedStyle(document.getElementById('d1'), '').cssText;
+            // console.log(window.getComputedStyle(document.getElementById('d1')).cssText);
+
+            // document.body.appendChild(newEle);
+            const bg = window.getComputedStyle(oDiv).getPropertyValue('background');
+            let newEle = document.createElement('div');
+            newEle.style.background = bg;
+            document.body.appendChild(newEle);
+        }, false);
+    </script>
+</body>
+
+</html>
