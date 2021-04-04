@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        /* reset end */
+
+        #d1 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d1">
+        <span>速度恢复收费</span><br>
+        <span>极速对决速度快恢复开始就</span>
+    </div>
+
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#d1').click(function (e) {
+                $(this).html('');
+            })
+        })
+    </script>
+</body>
+
+</html>
