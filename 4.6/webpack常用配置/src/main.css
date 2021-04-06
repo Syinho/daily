@@ -1,0 +1,13 @@
+#app1 {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    background: lightcoral;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
