@@ -1,0 +1,9 @@
+.div1 {
+    width: 350px;
+    height: 250px;
+    border-radius: 35px;
+    background: lightskyblue;
+    outline: white dashed 2px;
+    outline-offset: -25px;
+    margin: 30px auto;
+}
