@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">Click</button>
+    <button id="btn1">Click1</button>
+    <script>
+        const oBtn = document.getElementById('btn');
+        const oBtn1 = document.getElementById('btn1');
+        oBtn.addEventListener('click', () => {
+            console.log(this);
+        }, false);
+
+        oBtn1.addEventListener('click', function () {
+            let obj = {
+                name: 'xxxx',
+                getName: () => {
+                    console.log(this.name);
+                }
+            };
+            obj.getName();
+        }, false);
+    </script>
+</body>
+
+</html>

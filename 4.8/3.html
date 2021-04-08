@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var num = 777;
+
+        function a() {
+            let num = 456;
+
+            function b() {
+                let num = 123;
+                alert(this.num);
+            }
+            b();
+        }
+        window.a();
+        // a是window对象的属性，保存在当前执行上下文的栈内存中。
+        // 
+    </script>
+</body>
+
+</html>
