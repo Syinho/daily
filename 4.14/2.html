@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        #d1 {
+            height: 200%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <form action="">
+        <input type="text" name="username" id="">
+        <input type="button" value="click" onclick="console.log(username.value)">
+    </form> -->
+
+    <!-- <button onclick="try{show();}catch(err){clg(err)}">click</button> -->
+    <button id="btn">click</button>
+    <script>
+        document.getElementById('btn').onclick = () => {
+            console.log(this.id);
+        }
+        // let btn = document.getElementById('btn');
+        // btn.addEventListener('click', () => {
+        //     console.log(this.id);
+        // }, false);
+    </script>
+</body>
+
+</html>

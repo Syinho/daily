@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr1 = [15, 52, 34, 49, 58, 56, 21, 3];
+        let arr2 = arr1.map((item, index, arr) => {
+            if (item < 20) {
+                return item;
+            }
+        });
+        console.log(arr2);
+    </script>
+</body>
+
+</html>
