@@ -21,6 +21,10 @@
             height: 100%;
         }
 
+        body {
+            overflow: hidden;
+        }
+
         li {
             list-style: none;
         }
@@ -31,36 +35,33 @@
 
         /* reset end */
         #d1 {
+            width: 300px;
             height: 400px;
-            background-color: yellow;
+            border: 1px solid black;
+            text-align: center;
+            display: table;
+            word-spacing: -1em;
         }
 
-        #d2 {
-            height: 400px;
-            background-color: palevioletred;
-        }
-
-        #d3 {
-            height: 400px;
-            background-color: olive;
-        }
-
-        #d4 {
-            height: 400px;
-            background-color: lightcoral;
+        li {
+            width: 15px;
+            height: 15px;
+            border: 1px solid black;
+            border-radius: 50%;
+            margin: 5px;
+            display: inline-block;
         }
     </style>
 </head>
 
 <body>
     <div id="d1">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
     </div>
-    <a name="d2">
-        <div id="d2"></div>
-    </a>
-    <div id="d3"></div>
-    <div id="d4"></div>
-    <a href="#d2">click</a>
 </body>
 
 </html>
