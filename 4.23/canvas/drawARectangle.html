@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="cvs" width="400px" height="400px"
+        style="border: 1px solid black; border-radius: 8px;background-color: yellow;;"></canvas>
+    <script>
+        let cvs = document.getElementById('cvs');
+        if (cvs.getContext) {
+            let ctx = cvs.getContext('2d');
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 20;
+            // ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+            ctx.strokeRect(50, 50, 100, 100);
+
+            // ctx.fillStyle = "blue";
+            // ctx.fillRect(50, 50, 100, 100);
+            ctx.clearRect(50, 50, 50, 80);
+
+            ctx.rect(50, 50, 100, 100);
+        }
+    </script>
+</body>
+
+</html>

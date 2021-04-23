@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="cvs" width="300px" height="300px"
+        style="border: 1px solid black;border-radius: 20px;;background-color: indianred;box-sizing: content-box;"></canvas>
+    <script>
+        let cvs = document.getElementById('cvs');
+
+        function getDate() {
+            let date = new Date();
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            let obj = {
+                h: h,
+                m: m,
+                s: s
+            };
+            return obj;
+        }
+
+        function setDate() {
+            let deg = Math.PI / 30;
+            let time = getDate();
+            if (time.h == 12) {
+                time.h = 0;
+            }
+            let h_x = time.h
+        }
+        if (cvs.getContext) {
+            let ctx = cvs.getContext('2d');
+            ctx.translate(150, 150);
+            ctx.beginPath();
+            ctx.arc(0, 0, 120, 0, 2 * Math.PI, false);
+            ctx.moveTo(0, 0);
+            ctx.lineTo(0, -85);
+            ctx.moveTo(0, 0);
+            ctx.lineTo(75, 0);
+            ctx.font = "bold 14px '微软雅黑'";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("12", 0, -90);
+            ctx.fillText('1', 45, -45 * Math.sqrt(3));
+            ctx.fillText('2', 45 * Math.sqrt(3), -45);
+            ctx.fillText('3', 90, 0);
+            ctx.fillText('4', 45 * Math.sqrt(3), 45);
+            ctx.fillText('5', 45, 45 * Math.sqrt(3));
+            ctx.fillText('6', 0, 90);
+            ctx.fillText('7', -45, 45 * Math.sqrt(3));
+            ctx.fillText('8', -45 * Math.sqrt(3), 45);
+            ctx.fillText('9', -90, 0);
+            ctx.fillText('10', -45 * Math.sqrt(3), -45);
+            ctx.fillText('11', -45, -45 * Math.sqrt(3));
+            ctx.strokeStyle = "#125ff0";
+            ctx.stroke();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .list {
+            display: inline-block;
+            width: 150px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="nav">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        function a() {
+            const oUl = document.getElementById('nav');
+            let aLi = oUl.getElementsByTagName('li');
+            for (let i = 0; i < aLi.length; i++) {
+                aLi[i].className = "list";
+                aLi[i].addEventListener('click', o, false);
+            }
+
+            function o() {
+                console.log('o chufa ');
+            }
+        }
+        a();
+    </script>
+</body>
+
+</html>
