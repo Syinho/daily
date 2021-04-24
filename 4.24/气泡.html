@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="cvs" width="400px" height="400px" style="border: 1px solid black;border-radius: 15px;"></canvas>
+    <script>
+        let cvs = document.getElementById('cvs');
+        let ctx = cvs.getContext('2d');
+
+
+        let x = Math.floor(Math.random() * 401);
+        let y = 390;
+        let arr = [{
+            x: x,
+            y: y,
+            r: Math.floor(Math.random() * 6) + 2,
+            startX: x,
+            startY: y,
+            rad: 0,
+            step: Math.floor(Math.random() * 20) + 10,
+            c1: Math.floor(Math.random() * 256),
+            c2: Math.floor(Math.random() * 256),
+            c3: Math.floor(Math.random() * 256),
+        }];
+
+        ctx.beginPath();
+
+        function draw() {
+            setInterval(function () {
+                arr[0].x = arr[0].startX - Math.sin(rad * Math.PI / 180) * arr[0].step;
+                arr[0].y = arr[0].startY - ()
+            });
+            setInterval(function () {
+                ctx.clearRect(0, 0, 400, 400);
+                ctx.arc(x, y, r, 0, Math.PI * 2, false);
+                ctx.fillStyle = `rgba(${c1},${c2},${c3},1)`;
+            }, 1000 / 60);
+
+
+        }
+    </script>
+</body>
+
+</html>

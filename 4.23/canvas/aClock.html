@@ -24,44 +24,84 @@
                 m: m,
                 s: s
             };
+            console.log(`${obj.h}:${obj.m}:${obj.s}`);
+
             return obj;
         }
 
-        function setDate() {
-            let deg = Math.PI / 30;
+        function setDate(ctx) {
             let time = getDate();
-            if (time.h == 12) {
-                time.h = 0;
+            if (time.h >= 12) {
+                time.h -= 12;
             }
-            let h_x = time.h
-        }
-        if (cvs.getContext) {
-            let ctx = cvs.getContext('2d');
-            ctx.translate(150, 150);
+            let hDeg = (time.h * Math.PI / 6) + (time.m / 60 * Math.PI / 360) + (time.s / 60 * Math.PI / 21600);
+            let h_x = 50 * Math.sin(hDeg);
+            let h_y = -50 * Math.cos(hDeg);
+            let mDeg = (time.m / 30 * Math.PI) + (time.s / 60 * Math.PI / 30);
+            let m_x = 65 * Math.sin(mDeg);
+            let m_y = -65 * Math.cos(mDeg);
+            let sDeg = time.s / 30 * Math.PI;
+            let s_x = 80 * Math.sin(sDeg);
+            let s_y = -80 * Math.cos(sDeg);
+
+            // let RN = function () {
+            //     return Math.floor(Math.random() * 256);
+            // }
             ctx.beginPath();
-            ctx.arc(0, 0, 120, 0, 2 * Math.PI, false);
             ctx.moveTo(0, 0);
-            ctx.lineTo(0, -85);
+            ctx.lineTo(h_x, h_y);
+            ctx.strokeStyle = '#ff5896';
+            ctx.stroke();
+
+            ctx.beginPath();
             ctx.moveTo(0, 0);
-            ctx.lineTo(75, 0);
-            ctx.font = "bold 14px '微软雅黑'";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.fillText("12", 0, -90);
-            ctx.fillText('1', 45, -45 * Math.sqrt(3));
-            ctx.fillText('2', 45 * Math.sqrt(3), -45);
-            ctx.fillText('3', 90, 0);
-            ctx.fillText('4', 45 * Math.sqrt(3), 45);
-            ctx.fillText('5', 45, 45 * Math.sqrt(3));
-            ctx.fillText('6', 0, 90);
-            ctx.fillText('7', -45, 45 * Math.sqrt(3));
-            ctx.fillText('8', -45 * Math.sqrt(3), 45);
-            ctx.fillText('9', -90, 0);
-            ctx.fillText('10', -45 * Math.sqrt(3), -45);
-            ctx.fillText('11', -45, -45 * Math.sqrt(3));
-            ctx.strokeStyle = "#125ff0";
+            ctx.lineTo(m_x, m_y);
+            ctx.strokeStyle = '#ab2569';
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(s_x, s_y)
+            ctx.strokeStyle = '#bb0369';
             ctx.stroke();
         }
+
+        function draw() {
+            if (cvs.getContext) {
+                let ctx = cvs.getContext('2d');
+                ctx.translate(150, 150);
+                setInterval(function () {
+
+                    ctx.clearRect(-150, -150, 300, 300);
+
+                    ctx.beginPath();
+                    ctx.arc(0, 0, 120, 0, 2 * Math.PI, false);
+                    ctx.moveTo(130, 0);
+                    ctx.arc(0, 0, 130, 0, 2 * Math.PI, false);
+                    ctx.strokeStyle = 'black';
+                    ctx.stroke();
+
+                    setDate(ctx);
+
+                    ctx.font = "bold 14px '微软雅黑'";
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillText("12", 0, -90);
+                    ctx.fillText('1', 45, -45 * Math.sqrt(3));
+                    ctx.fillText('2', 45 * Math.sqrt(3), -45);
+                    ctx.fillText('3', 90, 0);
+                    ctx.fillText('4', 45 * Math.sqrt(3), 45);
+                    ctx.fillText('5', 45, 45 * Math.sqrt(3));
+                    ctx.fillText('6', 0, 90);
+                    ctx.fillText('7', -45, 45 * Math.sqrt(3));
+                    ctx.fillText('8', -45 * Math.sqrt(3), 45);
+                    ctx.fillText('9', -90, 0);
+                    ctx.fillText('10', -45 * Math.sqrt(3), -45);
+                    ctx.fillText('11', -45, -45 * Math.sqrt(3));
+                }, 1000 / 60);
+            }
+        }
+        draw();
     </script>
 </body>
 

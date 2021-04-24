@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let obj = {
+        //     a: Math.floor(Math.random() * 123),
+        //     b: (function () {
+        //         let that = this;
+        //         return (function () {
+        //             return that.a;
+        //         })()
+        //     })()
+        // };
+        // console.log(obj.b);
+
+        // function foo() {
+        //     console.log(this.a + ';' + arguments[0] + ';' + arguments[1]);
+        // }
+
+        // let obj = {
+        //     a: 2
+        // };
+        // foo.call(obj, 3, 4); // 2;3;4
+        // foo.apply(obj, [3, 4]); // 2;3;4
+        // foo.bind(obj, 3, 4)(); // 2;3;4
+
+        // const arr = [3, 5, 7, 9];
+        // const newArr = [];
+        // let obj = {
+        //     a: 2
+        // };
+        // arr.forEach(function (item, index, arr) {
+        //     newArr.push(item * this.a);
+        // }, obj);
+        // console.log(newArr);
+
+        // const arr = [3, 5, 7, 9];
+        // let obj = {
+        //     a: 2
+        // };
+
+        // function foo(acc, cur, index, arr) {
+        //     return acc + cur * this.a;
+        // }
+        // let double = arr.reduce(foo, obj);
+        // console.log(double);
+        const arr = [3, 5, 7, 9];
+        const obj = {
+            a: 5
+        };
+
+        function chk(item, index, arr) {
+            return item * this.a > 25;
+        }
+        let newArr = arr.filter(chk, obj);
+        console.log(newArr); // [7,9]
+    </script>
+</body>
+
+</html>

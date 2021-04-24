@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="cvs" width="300px" height="300px" style="border: 1px solid black;"></canvas>
+    <script>
+        let cvs = document.getElementById('cvs');
+        if (cvs.getContext) {
+            let ctx = cvs.getContext('2d');
+            ctx.translate(150, 150);
+            ctx.beginPath();
+
+            ctx.moveTo(0, 0);
+            ctx.lineTo(100, 100);
+
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(-100, -100);
+            ctx.strokeStyle = 'blue';
+            ctx.stroke();
+        }
+    </script>
+</body>
+
+</html>
