@@ -1,0 +1,216 @@
+/* reset start */
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    vertical-align: bottom;
+}
+
+a:active {
+    color: #009ee0;
+}
+
+/* reset end */
+/* structure start */
+#main {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#header {
+    width: 100%;
+    height: 80px;
+    background-color: white;
+}
+
+#headerMain {
+    width: 1100px;
+    height: 100%;
+    position: relative;
+    margin: 0 auto;
+}
+
+#logo {
+    float: left;
+    margin: 39px 15px 0 10px
+}
+
+#music {
+    float: left;
+    margin-top: 56px;
+    cursor: pointer;
+    background: url('img/musicoff.gif') no-repeat 0 0 / cover;
+}
+
+#nav {
+    float: right;
+    margin-top: 50px;
+}
+
+#nav>li {
+    float: left;
+    margin-left: 35px;
+}
+
+#nav>li>.up {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    overflow: hidden;
+    transition: .5s;
+}
+
+#nav>li>.up:hover {
+    width: 100%;
+}
+
+#arrow {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 80px;
+    left: 50%;
+    border: 10px solid transparent;
+    z-index: 10;
+    border-top-color: white;
+    transition: .5s;
+}
+
+#content {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+#menu {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    z-index: 20;
+}
+
+#menu>li {
+    width: 12px;
+    height: 12px;
+    border: 1px solid white;
+    margin: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+#menu>li.active {
+    background-color: #fff;
+}
+
+#list {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    transition: top .5s;
+}
+
+#list .liList {
+    position: relative;
+    width: 2000px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+}
+
+#list .divList {
+    position: relative;
+    width: 1100px;
+    height: 520px;
+    margin: 0 auto;
+}
+
+#loading>div {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    z-index: 50;
+    left: 0;
+    background-color: #009ee0;
+    transition: height .5s;
+}
+
+#loading>div:nth-of-type(1) {
+    top: 0;
+}
+
+#loading>div:nth-of-type(2) {
+    bottom: 0;
+}
+
+#loading>span {
+    position: absolute;
+    width: 0%;
+    height: 4px;
+    left: 0;
+    top: 50%;
+    z-index: 60;
+    margin-top: -2px;
+    background-color: white;
+    transition: width .5s;
+}
+
+#home {
+    background: url('img/bg1.jpg') no-repeat center center / cover;
+}
+
+#course {
+    background: url('img/bg2.jpg') no-repeat center center / cover;
+}
+
+#works {
+    background: url('img/bg3.jpg') no-repeat center center / cover;
+}
+
+#about {
+    background: url('img/bg4.jpg') no-repeat center center / cover;
+}
+
+#partner {
+    background: url('img/bg5.jpg') no-repeat center center / cover;
+}
+
+/* structure end */
+
+/* common start */
+.commonTitle {
+    color: cadetblue;
+    font-size: 80px;
+    font-weight: bold;
+    line-height: .8;
+    letter-spacing: -5px;
+}
+
+.commonText {
+    color: #009ee0;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+/* common end */
+
+/* homeContent start*/
+
+/* homeContent end */

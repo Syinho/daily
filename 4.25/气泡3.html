@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="cvs" width="400px" height="400px" style="border: 1px solid black;border-radius: 15px;"></canvas>
+    <script>
+        let cvs = document.getElementById('cvs');
+        let ctx = cvs.getContext('2d');
+        let x = Math.floor(Math.random() * 401);
+        let y = cvs.height - 10;
+
+        let data = {
+            x: x,
+            y: y,
+            startX: x,
+            startY: y,
+            c1: Math.floor(Math.random() * 256),
+            c2: Math.floor(Math.random() * 256),
+            c3: Math.floor(Math.random() * 256),
+            c4: 1,
+            r: Math.floor(Math.random() * 10) + 2,
+            step: Math.floor(Math.random() * 20) + 10,
+            deg: 0
+        };
+        console.log(data);
+
+
+
+        let timer2 = setInterval(function () {
+            data.deg += 5;
+            data.x = data.startX - Math.sin(data.deg * Math.PI / 180) * data.step;
+            // data.y = data.startY - data.deg * Math.PI / 180 * data.step;
+            data.y -= 2;
+            console.log(data.x);
+            console.log(data.y);
+
+            ctx.clearRect(0, 0, 400, 400);
+            ctx.fillStyle = `rgba(${data.c1},${data.c2},${data.c3},${data.c4})`;
+            ctx.beginPath();
+            ctx.moveTo(data.x, data.y);
+            ctx.arc(data.x, data.y, data.r, 0, 2 * Math.PI, false);
+            ctx.closePath();
+            ctx.fill();
+        }, 1000 / 60);
+    </script>
+</body>
+
+</html>

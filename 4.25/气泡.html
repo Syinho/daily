@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="cvs" width="400px" height="400px" style="border: 1px solid black;"></canvas>
+    <script>
+        let cvs = document.getElementById('cvs');
+        let ctx = cvs.getContext('2d');
+
+        let arr = [];
+
+        timer1 = setInterval(function () {
+            let x = Math.floor(Math.random() * 401);
+            let y = cvs.height - 10;
+            arr.push({
+                x: x,
+                y: y,
+                startX: x,
+                startY: y,
+                step: Math.floor(Math.random() * 20) + 10, // 振幅
+                r: Math.floor(Math.random() * 10) + 2, // 半径
+                c1: Math.floor(Math.random() * 256),
+                c2: Math.floor(Math.random() * 256),
+                c3: Math.floor(Math.random() * 256),
+                c4: 1,
+                deg: 0 // 横向偏移速率
+            });
+        }, 100);
+        timer2 = setInterval(function () {
+            ctx.clearRect(0, 0, 400, 400);
+
+            for (let i = 0; i < arr.length; i++) {
+                arr[i].deg += 5;
+                arr[i].x = arr[i].startX - Math.sin(arr[i].deg * Math.PI / 180) * arr[i].step;
+                arr[i].y = arr[i].startY - (arr[i].deg * Math.PI / 180) * arr[i].step;
+                if (arr[i].y < 50) {
+                    arr.splice(i, 1);
+                }
+            }
+            console.log(arr.length);
+
+
+            for (let i = 0; i < arr.length; i++) {
+                ctx.fillStyle = `rgba(${arr[i].c1},${arr[i].c2},${arr[i].c3},${arr[i].c4})`;
+                ctx.beginPath();
+                ctx.moveTo(arr[i].x, arr[i].y);
+                ctx.arc(arr[i].x, arr[i].y, arr[i].r, 0, 2 * Math.PI, false);
+                ctx.closePath();
+                ctx.fill();
+            }
+        }, 1000 / 60);
+    </script>
+</body>
+
+</html>
