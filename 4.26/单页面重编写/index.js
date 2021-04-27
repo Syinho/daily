@@ -12,7 +12,7 @@ window.onload = function () {
     let oList = $('list');
     let aLiList = getByClass(oList, 'liList');
     let aDivList = getByClass(oList, 'divList');
-    let oHomeContent = $('homeConetnt');
+    let oHomeContent = $('homeContent');
     let oHomeConetnt1 = getByClass(oHomeContent, 'homeContent1')[0];
     let oHomeContent2 = getByClass(oHomeContent, 'homeContent2')[0];
 

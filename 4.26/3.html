@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">Click</button>
+    <script>
+        // function a() {
+        //     return () => {
+        //         console.log(this.num);
+        //     }
+        // }
+
+        // let obj1 = {
+        //     num: 7
+        // };
+        // let obj2 = {
+        //     num: 9
+        // };
+
+        // let getNum = a.call(obj1);
+        // getNum.call(obj2); // 7
+
+
+
+        // function foo() {
+
+        // }
+
+        // let obj = {
+        //     foo: foo
+        // }
+
+        // foo(); //  window
+        // obj.foo(); // object
+
+        // function foo() {
+        //     let that = this;
+        //     setTimeout(function () {
+        //         console.log(that.num);
+        //     }, 100);
+        // }
+
+        // let obj = {
+        //     num: 7
+        // };
+        // foo.call(obj); // 7
+
+        // function getNum() {
+        //     // setTimeout(function(){},false)
+        //     return this.num;
+        // }
+
+        var num = 88;
+        var obj = {
+            num: 77,
+            getNum: function () {
+                var that = this;
+                return function () {
+                    console.log(that.num);
+                }
+            }
+        }
+        obj.getNum()(); // 77
+    </script>
+</body>
+
+</html>
