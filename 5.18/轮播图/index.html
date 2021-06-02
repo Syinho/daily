@@ -1,0 +1,221 @@
+<!DOCTYPE>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        /* 
+            1 整体 1100*520
+            2 缩略图 150*520
+            3 扩展图 510*520
+            4 缩略图毛玻璃
+            5 扩展图清晰
+         */
+        #main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #container {
+            width: 1100px;
+            height: 520px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+
+        #container>ul {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        ul>li {
+            width: 150px;
+            height: 100%;
+            float: left;
+            position: relative;
+            background-repeat: no-repeat;
+            background-position: 0;
+            background-size: cover;
+            cursor: pointer;
+            color: white;
+            font-size: 30px;
+            line-height: 30px;
+            letter-spacing: -2px;
+            font-weight: bold;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* 将li设置为 z-index:0 .glass的 z-index：-1 才不会落在父元素的下面 */
+        /*  */
+
+        ul>li:nth-of-type(1) {
+            background-image: url('../../img/a85d5e7353dcc1dc727e3ace82fa6d25.jpeg');
+        }
+
+        ul>li:nth-of-type(2) {
+            background-image: url('../../img/b08b-fxipenn0400574.jpg');
+        }
+
+        ul>li:nth-of-type(3) {
+            background-image: url('../../img/d0e56ca2447ca3f020a50c6019cb2239.jpeg');
+        }
+
+        ul>li:nth-of-type(4) {
+            background-image: url('../../img/f44f597f4b808b57b6456a1d1a371ff0.jpeg');
+        }
+
+        ul>li:nth-of-type(5) {
+            background-image: url('../../img/0329f4a8d61bc2247b9e0954c4210153.jpeg');
+            width: 500px;
+        }
+
+        .glass {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            filter: blur(5px);
+            margin: -30px;
+            z-index: -1;
+            background-repeat: no-repeat;
+            background-position: 0;
+            background-size: cover;
+        }
+
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-repeat: no-repeat;
+            background-position: 0;
+            background-size: cover;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="container">
+            <ul>
+                <li>
+                    <div class="glass"></div>
+                    Lorem, <br>ipsum.
+                </li>
+                <li>
+                    <div class="glass"></div>
+                    Lorem,<br> ipsum.
+                </li>
+                <li>
+                    <div class="glass"></div>
+                    Lorem,<br> ipsum.
+                </li>
+                <li>
+                    <div class="glass"></div>
+                    Lorem,<br> ipsum.
+                </li>
+                <li class="cur">
+                    <div class="glass"></div>
+                    Lorem,<br> ipsum.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="../../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        $(window).load(function () {
+            // let $curUrl = $('.cur').css('backgroundImage');
+            let $glass = $('<div class="glass"></div>');
+            // $('#main').css('backgroundImage', $curUrl);
+            for (let i = 0; i < 5; i++) {
+                let $bg = $('<div class="bg"></div>');
+                if (i == 4) {
+                    $bg.addClass('curBg');
+                }
+                let url = $('ul>li:eq(' + i + ')').css('backgroundImage');
+                $bg.css('backgroundImage', url);
+                $('#main').prepend($bg);
+            }
+
+            $('.bg.curBg').fadeIn(300);
+            $('#container li').each(function (i) {
+                let $url = $(this).css('backgroundImage');
+                $(this).children('.glass').css('backgroundImage', $url);
+                if ($(this).attr('class') == 'cur') {
+                    $(this).children('.glass').fadeOut();
+                }
+            });
+
+
+
+            $('#container li').mouseover(function (event) {
+                event.stopPropagation();
+                // 所有li长度设置为150px
+                // 当前li元素的长度设置为500px
+                let $prev = $('.cur');
+                $('#container li').removeClass();
+                $prev.addClass('prev');
+                let $cur = $(this);
+                $cur.addClass('cur');
+                $prev.stop(true, false).animate({
+                    width: '150px'
+                }, 300, function () {
+                    $prev.children('.glass').fadeIn(300);
+                });
+
+                $cur.stop(true, false).animate({
+                    width: '500px'
+                }, 300, function () {
+                    $cur.children('.glass').fadeOut(300);
+                });
+
+
+            });
+
+        })
+    </script>
+</body>
+
+</html>

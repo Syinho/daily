@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            overflow: hidden;
+            cursor: url(../img/鼠标样式.png) 3 3, default;
+            background-color: black;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+
+        #circle {
+            width: 50px;
+            height: 50px;
+            border: 1px solid white;
+            border-radius: 50%;
+            position: absolute;
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+            pointer-events: none;
+        }
+
+        #circle_outside {
+            width: 50px;
+            height: 50px;
+            border: 1px solid white;
+            border-radius: 50%;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <dvi id="circle"></dvi>
+    <script>
+        window.onload = function () {
+            let cir = document.getElementById('circle');
+            circleMove();
+
+            function circleMove() {
+                let w = cir.offsetWidth;
+                let h = cir.offsetHeight;
+                let mx, my;
+
+                document.body.addEventListener('mousemove', (e) => {
+                    if (cir.style.opacity == 0) {
+                        cir.style.opacity = 1;
+                    }
+
+                    setTimeout(() => {
+                        mx = e.offsetX;
+                        my = e.offsetY;
+                    }, 100);
+                }, false);
+
+                function setPos(e) {
+                    cir.style.top = my - h / 2 + 'px';
+                    cir.style.left = mx - w / 2 + 'px';
+                }
+
+                timer1 = setInterval(() => {
+                    setPos();
+                }, 1000 / 60);
+
+            }
+
+            function circleClick() {
+
+            }
+
+            function throttle(fn, delay) {
+                let timeStamp = Date.now();
+                return function () {
+                    let context = this;
+                    let args = arguments;
+
+                    if (Date.now() >= timeStamp + delay) {
+                        fn.apply(context, args);
+                        timeStamp = Date.now();
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+
+</html>

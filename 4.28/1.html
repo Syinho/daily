@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let myObj = {};
+        // Object.defineProperty(myObj, 'arr', {
+        //     writable: false,
+        //     enumerable: false,
+        //     configurable: false,
+        //     value: [1, 2, 3]
+        // });
+
+        // myObj.arr.push(4);
+        // console.log(myObj.arr);
+
+        // let obj = {
+        //     num: 75
+        // };
+        // Object.preventExtensions(obj);
+        // obj.msg = 'new msg';
+        // console.log(obj.msg); // undefined
+        let obj = {};
+        Object.defineProperty(obj, 'arr', {
+            configurable: true,
+            enumerable: true,
+            writable: true,
+            value: [2, 3, 4]
+        });
+
+        Object.freeze(obj);
+        obj.arr.push(5);
+        console.log(obj.arr); // [2,3,4,5]
+
+        for (const prop in obj) {
+            Object.freeze(obj[prop]);
+        }
+        obj.arr.push(6);
+        console.log(obj.arr); // TypeError: Cannot add property 4, object is not extensible
+    </script>
+</body>
+
+</html>

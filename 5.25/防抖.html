@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // **
+        // * @desc 函数防抖——————"立即执行版本"和"非立即执行版本"
+        // * @param fn 需要执行的函数
+        // * @param delay 延迟执行时间（毫秒）
+        // * @param immediate——————true 立即执行， false 非立即执行
+        // **
+
+        function debounce(fn, delay, immediate) {
+            let timer;
+            return function () {
+                let ctx = this;
+                let args = arguments;
+
+                if (timer) clearTimeout(timer);
+                if (immediate) {
+                    let callNow = !timer;
+                    timer = setTimeout(() => {
+                        timer = null;
+                    }, delay);
+                    if (callNow) fn.apply(context, args)
+                } else {
+                    timer = setTimeout(() => {
+                        fn.apply(ctx, args)
+                    }, delay);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

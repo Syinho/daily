@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">click</button>
+    <script>
+        let idx = 0;
+        let arr = [];
+
+        function add() {
+            arr.push({
+                i: idx++
+            })
+            console.log(arr);
+
+        };
+
+        document.getElementById('btn').addEventListener('click', add, false);
+        // 前置型递增递减与后置型递增递减的区别：
+        // 前置型递增首先对数据进行处理后再调用RHS查询
+        // 后置型递增首先进行RHS查询再对数据进行处理
+
+        // let a = 77;
+        // let b = 22;
+        // console.log(a++ + b);
+    </script>
+</body>
+
+</html>

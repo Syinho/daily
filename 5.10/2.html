@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            cursor: url(../img/鼠标样式.png) 3 3, default;
+            background-color: black;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        #circle {
+            width: 50px;
+            height: 50px;
+            border: 1px solid white;
+            border-radius: 50%;
+            display: none;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="circle"></div>
+    <script>
+        // #circle 处于隐藏状态， 只有当鼠标移动的时候才会显示
+        // #circle 跟随鼠标所在位置， 另外鼠标所在位置只有当鼠标移动时才能获取； #circle抵达鼠标所在位置需要延迟
+
+        window.onload = function () {
+            const oCircle = document.getElementById('circle');
+            const body = document.body;
+            let mx, my, oldmx, oldmy;
+
+            body.addEventListener('mousemove', throttle(moveCir, 1000 / 60), false);
+
+            function moveCir(e) {
+                console.log(oCircle.style.display);
+
+                if (oCircle.style.display == 'none') {
+                    console.log('display:none');
+
+                    oCircle.style.display = 'block';
+                }
+                mx = e.offsetX;
+                my = e.offsetY;
+                timer = setInterval(() => {
+                    oCircle.style.left = mx + 'px';
+                    oCircle.style.top = my + 'px';
+                }, 1000 / 60);
+            }
+
+            function throttle(fn, delay) {
+                let timeStamp = Date.now();
+                return function () {
+                    let context = this;
+                    let args = arguments;
+                    if (Date.now() >= timeStamp + delay) {
+                        fn.apply(context, arguments);
+                        timeStamp = Date.now();
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

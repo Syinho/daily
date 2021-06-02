@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+
+        #main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #bgBox {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            display: none;
+        }
+
+        #container {
+            position: absolute;
+            width: 1100px;
+            height: 520px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+
+        #container>li {
+            position: relative;
+            float: left;
+            width: 150px;
+            /* 150*4+500 */
+            height: 520px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        #container>li:last-child {
+            width: 500px;
+        }
+
+        #container>li:nth-child(1),
+        #bgBox>.bg:nth-child(1) {
+            background-image: url('../压缩pixiv图片/docsmall/85925156_p0.jpg');
+        }
+
+        #container>li:nth-child(2),
+        #bgBox>.bg:nth-child(2) {
+            background-image: url('../压缩pixiv图片/docsmall/86914115_p0.jpg');
+        }
+
+        #container>li:nth-child(3),
+        #bgBox>.bg:nth-child(3) {
+            background-image: url('../压缩pixiv图片/docsmall/88450543_p0.jpg');
+        }
+
+        #container>li:nth-child(4),
+        #bgBox>.bg:nth-child(4) {
+            background-image: url('../压缩pixiv图片/docsmall/88555424_p0.jpg');
+        }
+
+        #container>li:nth-child(5),
+        #bgBox>.bg:nth-child(5) {
+            background-image: url('../压缩pixiv图片/docsmall/89024808_p0.jpg');
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="bgBox">
+            <div class="bg"></div>
+            <div class="bg"></div>
+            <div class="bg"></div>
+            <div class="bg"></div>
+            <div class="bg cur"></div>
+        </div>
+        <ul id="container">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="cur"></li>
+        </ul>
+    </div>
+
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        function listChange() {
+            // 鼠标移动到li元素上，上一个li元素添加 prev 类名 ， 当前元素添 加 cur 类名
+            $('#container>li').mouseover(function (e) {
+                if ($(this).hasClass('cur')) {
+                    return;
+                } else {
+                    $('#container>li.prev').removeClass('prev');
+                    $('#container>li.cur').removeClass('cur').addClass('prev');
+                    $(this).addClass('cur');
+                    let idx = $(this).index();
+
+                    $('#bgBox>.bg.prev').removeClass('prev');
+                    $('#bgBox>.bg.cur').removeClass('cur').addClass('prev');
+                    $('#bgBox>.bg:eq(' + idx + ')').addClass('cur');
+                }
+            })
+        }
+
+        function throttle(fn, delay) {
+            let timeStamp = Date.now();
+            return function () {
+                let ctx = this;
+                let args = arguments;
+                let now = Date.now();
+                if (timeStamp + delay >= now) {
+                    fn.apply(this, args);
+                    timeStamp = now;
+                } else {
+                    return;
+                }
+            }
+        }
+
+        function changeAnimate() {
+            $('#container>li.cur').stop(true, true).animate({
+                width: '500px'
+            }, 300);
+
+            $('#container>li.prev').stop(true, true).animate({
+                width: '150px'
+            }, 300);
+            $('#bgBox>.bg.cur').stop(true, true).fadeIn(300);
+            $('#bgBox>.bg.prev').stop(true, true).fadeOut(300);
+        }
+
+        $(function () {
+            listChange();
+        })
+    </script>
+
+</body>
+
+</html>

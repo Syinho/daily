@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            /* overflow: hidden; */
+            height: 300%;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        #d1 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: .5s;
+        }
+
+        #btn {
+            position: absolute;
+            z-index: 25;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d1"></div>
+    <button id="btn">Click</button>
+    <script>
+        let firstX = 17;
+        let firstY = 56;
+        let x = firstX;
+        let y = firstY;
+        let setArr = [];
+        let i = 0;
+        let timer1 = null;
+        const d1 = document.getElementById('d1');
+        setArr.push({
+            x: firstX,
+            y: firstY
+        });
+        for (let i = 1; i < 1500; i++) {
+            x += 1;
+            y += 1;
+            setArr.push({
+                x: x,
+                y: y
+            });
+        }
+        const btn = document.getElementById('btn');
+        btn.addEventListener('click', (e) => {
+            change();
+        }, false);
+
+        function change() {
+            timer1 = setInterval(function () {
+                i++;
+                if (i == 1500) {
+                    timer1 = null;
+                }
+                d1.style.left = setArr[i].x + 'px';
+                d1.style.top = setArr[i].y + 'px';
+
+            }, 1000 / 60);
+        }
+    </script>
+</body>
+
+</html>

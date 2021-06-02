@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            cursor: url(../img/鼠标样式.png) 3 3, default;
+            background-color: black;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+
+        .cir {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            border: 1px solid white;
+            border-radius: 50%;
+            transition: .5s ease-in;
+            z-index: 10;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            let body = document.body;
+            mouseMove();
+            let oCir = document.getElementsByClassName('cir')[0];
+
+
+            function mouseMove() {
+                let mx, my;
+                let setArr = [];
+                create();
+                bindMove();
+
+                function create() {
+                    let oDiv = document.createElement('div');
+                    oDiv.className = 'cir';
+                    body.appendChild(oDiv);
+                }
+
+                function bindMove() {
+                    body.addEventListener('mousemove', function (e) {
+
+                        mx = e.offsetX;
+                        my = e.offsetY;
+
+                        if (oCir.style.opacity == 0) {
+                            oCir.style.opacity = 1;
+                            oCir.style.top = my + 'px';
+                            oCir.style.left = mx + 'px';
+                        }
+                        setArr.push({
+                            x: mx,
+                            y: my,
+                            stamp: Date.now()
+                        });
+                        let dis = calcDis();
+                        if (dis > 50 || setArr[setArr.length - 1].stamp - setArr[0].stamp >= 500) {
+                            oCir.style.left = setArr[setArr.length - 1].x + 'px';
+                            oCir.style.top = setArr[setArr.length - 1].y + 'px';
+                            setArr = [];
+                        }
+                    }, false);
+
+                    function calcDis() {
+                        let x0 = setArr[0].x;
+                        let y0 = setArr[0].y;
+                        let xl = setArr[setArr.length - 1].x;
+                        let yl = setArr[setArr.length - 1].y;
+
+                        return Math.sqrt(Math.pow((xl - x0), 2), Math.pow((yl - y0), 2));
+                    }
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>

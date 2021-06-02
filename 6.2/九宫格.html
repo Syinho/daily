@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+
+        #main {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: #fff;
+        }
+
+        #nav {
+            /* 每个img规格：150X100 ，外边距5px，另有border：2px */
+            /* width：150*3+5*6+2*6=492px */
+            /* height：100*3+5*6+2*6=342px */
+            position: absolute;
+            width: 492px;
+            height: 342px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-sizing: content-box;
+            border: 3px solid black;
+            border-radius: 5px;
+        }
+
+        #nav>li {
+            float: left;
+            width: 150px;
+            height: 100px;
+            box-sizing: content-box;
+            margin: 5px;
+            border: 2px solid rgba(0, 0, 0, .5);
+            border-radius: 15px;
+            cursor: move;
+            overflow: hidden;
+        }
+
+        .initial {
+            background-color: wheat;
+        }
+
+        .target {
+            background-color: wheat;
+        }
+
+        .clone {
+            position: absolute;
+            width: 150px;
+            height: 100px;
+            overflow: hidden;
+            border: 1px solid grey;
+            border-radius: 15px;
+            box-sizing: content-box;
+            box-shadow: 10px 10px 5px -5px grey;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <ul id="nav">
+            <li><img src='./img/1.png'></li>
+            <li><img src='./img/2.png'></li>
+            <li><img src='./img/3.png'></li>
+            <li><img src='./img/4.png'></li>
+            <li><img src='./img/5.png'></li>
+            <li><img src='./img/6.png'></li>
+            <li><img src='./img/7.png'></li>
+            <li><img src='./img/8.png'></li>
+            <li><img src='./img/9.png'></li>
+        </ul>
+    </div>
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        $(function () {
+            let canMove = true;
+            $('#nav>li').mousedown(function (e) {
+                e.stopPropagation();
+                if (canMove) {
+                    canMove = !canMove;
+                    let $initLi = $(this);
+                    let initX = e.offsetX;
+                    let initY = e.offsetY;
+                    let initIdx = $initLi.index();
+                    // // console.log(initIdx);
+                    let $initClone = $initLi.clone();
+                    $initClone.html($initLi.html()).addClass('clone').appendTo('#nav').css({
+                        top: $initLi.position().top,
+                        left: $initLi.position().left
+                    });
+                    $($initLi).html('').addClass('initial');
+
+                    $('#nav').mousemove(function (e) {
+                        // console.log('触发mousemove事件');
+
+                        e.preventDefault();
+                        let curX = e.pageX - $('#nav').offset().left - initX;
+                        let curY = e.pageY - $('#nav').offset().top - initY;
+                        $initClone.css({
+                            top: curY,
+                            left: curX
+                        });
+                    });
+
+                    $initClone.mouseup(function (e) {
+                        $('#nav').off('mousemove');
+                        let minDis = 1000;
+                        let $target;
+                        let targetIdx;
+                        $('#nav>li').not(':last').each(function (index, item) {
+                            let dis = calcDis($initClone, $(this));
+                            // console.log(dis);
+
+                            if (dis < minDis) {
+                                minDis = dis;
+                                $target = $(this);
+                                targetIdx = $(this).index();
+                            }
+                        });
+
+                        if ($target.index() == $initLi.index()) {
+                            $initClone.stop(true, false).animate({
+                                top: $initLi.position().top,
+                                left: $initLi.position().left
+                            }, 300, function () {
+                                $initLi.html($initClone.html());
+                                $initClone.remove();
+                                $initLi.removeClass('initial');
+                                canMove = true;
+                            });
+                        } else {
+                            let $targetClone = $target.clone(true);
+                            $targetClone.css({
+                                left: $target.position().left,
+                                top: $target.position().top
+                            }).appendTo('#nav').addClass('clone');
+                            $target.html('').addClass('target');
+
+                            $initClone.stop(true, true).animate({
+                                top: $target.position().top,
+                                left: $target.position().left
+                            }, 300, function () {
+                                $target.html($initClone.html()).removeClass('target');
+                                $target.removeClass('target');
+                            });
+
+                            $targetClone.stop(true, true).animate({
+                                top: $initLi.position().top,
+                                left: $initLi.position().left
+                            }, 300, function () {
+                                $initLi.html($targetClone.html()).removeClass(
+                                    'initial');
+                                $initLi.removeClass('initial');
+                                $initClone.remove();
+                                $targetClone.remove();
+                                canMove = true;
+                            });
+                        }
+                    })
+                }
+            });
+
+            function calcDis($clone, $target) {
+                let cloneX = $clone.position().left;
+                let cloneY = $clone.position().top;
+                let targetX = $target.position().left;
+                let targetY = $target.position().top;
+                let dis = Math.sqrt(Math.pow(cloneX - targetX, 2) + Math.pow(cloneY - targetY, 2));
+                return dis;
+            }
+        })
+    </script>
+</body>
+
+</html>

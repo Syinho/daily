@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        #main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #445566;
+        }
+
+        #container {
+            position: absolute;
+            /* 每个li 200*130 外边距5px border:2px 200*3+5*6+2*6=642px */
+            /* 高 130*3+2*6+5*6=432px */
+            box-sizing: content-box;
+            border: 10px solid rgba(255, 255, 255, .5);
+            border-radius: 15px;
+            width: 642px;
+            height: 432px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #container>li {
+            float: left;
+            position: relative;
+            box-sizing: content-box;
+            width: 200px;
+            height: 130px;
+            margin: 5px;
+            border: 2px solid rgba(155, 155, 155, .5);
+            border-radius: 15px;
+            cursor: move;
+            overflow: hidden;
+        }
+
+        img {
+            width: 200px;
+            height: 130px;
+        }
+
+        .copy {
+            position: absolute;
+            box-sizing: content-box;
+            width: 200px;
+            height: 130px;
+            margin: 5px;
+            border: 2px solid rgba(155, 155, 155, .5);
+            border-radius: 15px;
+            cursor: move;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 2px 2px 2px rgba(125, 125, 125, .5);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <ul id="container">
+            <li><img src="./img/1.png" alt=""></li>
+            <li><img src="./img/2.png" alt=""></li>
+            <li><img src="./img/3.png" alt=""></li>
+            <li><img src="./img/4.png" alt=""></li>
+            <li><img src="./img/5.png" alt=""></li>
+            <li><img src="./img/6.png" alt=""></li>
+            <li><img src="./img/7.png" alt=""></li>
+            <li><img src="./img/8.png" alt=""></li>
+            <li><img src="./img/9.png" alt=""></li>
+        </ul>
+    </div>
+
+    <script src="../resource/jquery-1.7.2/jquery.js"></script>
+    <script>
+        let canMove = true;
+        $(window).load(function () {
+
+            // mousedown{
+
+            $('#container>li').mousedown(function (e) {
+                e.preventDefault();
+                if (canMove) {
+                    canMove = false;
+                    let initialX = e.offsetX;
+                    let initialY = e.offsetY;
+                    let $initLi = $(this);
+                    let initIdx = $('#container>li').index($initLi);
+                    let $copy = $('<div class="copy"></div>');
+                    $copy.html($(this).html()).css({
+                        top: $(this).position().top + 'px',
+                        left: $(this).position().left + 'px'
+                    }).appendTo('#container');
+
+                    $(this).html('');
+
+                    // mousmove
+
+                    $('#container').mousemove(function (e) {
+                        e.stopPropagation();
+                        let curX = e.pageX - $(this).offset().left - initialX;
+                        let curY = e.pageY - $(this).offset().top - initialY;
+
+                        $copy.css({
+                            top: curY + 'px',
+                            left: curX + 'px'
+                        });
+                    });
+
+                    // mouseUp
+
+                    $('div.copy').mouseup(function (e) {
+                        $('#container').off('mousemove');
+
+                        function calcDis($copy, $target) {
+                            let copy_x = $copy.position().left;
+                            let copy_y = $copy.position().top;
+                            let target_x = $target.position().left;
+                            let target_y = $target.position().top;
+
+                            let dis = Math.sqrt(Math.pow((target_x - copy_x), 2) + Math.pow((
+                                target_y - copy_y), 2));
+                            return dis;
+                        }
+
+                        let disIdxArr = [];
+                        let disArr = [];
+
+                        $('#container>li').each(function (i) {
+                            let dis = calcDis($copy, $(this));
+                            disIdxArr.push({
+                                dis: dis,
+                                index: i
+                            });
+                        });
+
+                        disIdxArr.forEach((item, index, arr) => {
+                            disArr.push(item.dis);
+                        });
+
+                        let minDis = Math.min(...disArr);
+                        // console.log(minDis);
+
+                        let minObj = disIdxArr.filter((item, index, arr) => {
+                            if (item.dis == minDis) {
+                                return true;
+                            }
+                        });
+                        // console.log(minObj);
+
+                        let idx = minObj[0].index;
+                        // console.log(idx);
+
+
+                        if (idx == initIdx) {
+                            $copy.css({
+                                top: $initLi.position().top,
+                                left: $initLi.position().left
+                            })
+                        } else {
+                            let $copy2 = $('<div class="copy"></div>');
+                            let $target = $('#container>li:eq(' + idx + ')');
+                            $copy2.html($target.html()).appendTo('#container');
+                            let target_x = $target.position().left;
+                            console.log(target_x);
+                            let target_y = $target.position().top;
+                            console.log(target_y);
+
+                            $copy2.css({
+                                top: target_y,
+                                left: target_x
+                            });
+                            $target.html('');
+
+                            $copy2.stop(true, false).animate({
+                                top: initialY,
+                                left: initialX
+                            }, 300, function () {
+                                $initLi.html($copy2.html());
+                                $copy2.remove();
+                                canMove = true;
+                            });
+
+                            $copy.stop(true, false).animate({
+                                top: target_y,
+                                left: target_x
+                            }, 300, function () {
+                                $target.html($copy.html());
+                                $copy.remove();
+                                canMove = true;
+                            });
+                        }
+                    });
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>
