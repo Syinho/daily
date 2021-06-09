@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            /* -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none; */
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        /* li {
+            list-style: none;
+        } */
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        #main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #demo1 {
+            width: 100px;
+            height: 100px;
+            background-color: #ff1600;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+
+        #demo1::before {
+            content: "";
+            background-color: #1c2569;
+        }
+
+        *::selection {
+            color: hotpink;
+            background-color: honeydew;
+        }
+
+        input::placeholder {
+            color: hotpink;
+        }
+
+        input::-ms-placeholder {
+            color: red;
+        }
+
+        /* #nav>li::marker {
+            color: hotpink;
+            background-color: indianred;
+        } */
+
+        #nav>li {
+            list-style: disc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <!-- <div id="demo1">
+            <div style="width: 10px;height: 10px;"></div>
+        </div> -->
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque distinctio minus pariatur natus, culpa,
+            ut veritatis, facere ullam aliquam assumenda voluptatibus. Perferendis at nobis aperiam?</p>
+        <span>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae laborum beatae saepe eius voluptates ipsam.
+        </span>
+        <input type="text" name="" id="" placeholder="这里是预设文本">
+        <ul id="nav">
+            <li>Lorem, ipsum.</li>
+            <li>Lorem, ipsum.</li>
+            <li>Lorem, ipsum.</li>
+            <li>Lorem.</li>
+            <li>Lorem, ipsum dolor.</li>
+        </ul>
+    </div>
+</body>
+
+</html>
