@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#" method="post">
+        <input type="text" name="" id="text"><br>
+        <input type="password" name="text" id="pwd"><br>
+        <input type="button" value="reset" onclick="re()">
+        <input type="button" value="click1" onclick="click1()"><br>
+        <select name="" id="" multiple>
+            <option value="">a</option>
+            <option value="">b</option>
+            <option value="">c</option>
+            <option value="">d</option>
+            <option value="">e</option>
+        </select>
+    </form>
+    <script>
+        let form = document.getElementsByTagName('form')[0];
+
+        function re() {
+            form.reset();
+        }
+
+        function click1() {
+            console.log(form.text);
+
+        }
+
+        let oSelect = document.getElementsByTagName('select')[0];
+        console.log(oSelect.options[3].text);
+        console.log(oSelect.options[3].innerHTML);
+        oSelect.options[4].text = 'lalala';
+        console.log(oSelect.options[4].text);
+        console.log(oSelect.options.length);
+        console.log(oSelect.length);
+    </script>
+</body>
+
+</html>

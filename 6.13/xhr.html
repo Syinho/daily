@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const xhr = new XMLHttpRequest();
+
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState == 4) {
+        //         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+        //             //代表响应成功，xhr.responseText与xhr.responseXML有内容
+        //         } else {
+        //             // 代表响应失败 
+        //         }
+        //     }
+        // }
+        // xhr.open('get', 'example.php?name1=value1&name2=value2', true);
+        // xhr.send(null);
+
+        function addURLParam(url, name, value) {
+            url += (url.indexOf('?') == -1 ? '?' : '&');
+            url += encodeURIComponent(name) + '=' + encodeURIComponent(value);
+            return url;
+        }
+
+        let newUrl = addURLParam('www.baidu.com', 'q', 'XMLHttpRequest');
+        console.log(newUrl); // www.baidu.com ? q = XMLHttpRequest
+        let anotherNewUrl = addURLParam(newUrl, 'keyword', 'mdn');
+        console.log(anotherNewUrl); //www.baidu.com?q=XMLHttpRequest&keyword=mdn
+    </script>
+</body>
+
+</html>

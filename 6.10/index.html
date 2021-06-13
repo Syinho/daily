@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+
+
+        /* structure start */
+        #main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        @font-face {
+            font-family: 'neo';
+            src: url('./NEOTERICc.ttf');
+        }
+
+        #bg {
+            height: 100%;
+            background: linear-gradient(45deg, #211136, #bf5853);
+        }
+
+        #login_wrap {
+            width: 980px;
+            height: 500px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            box-shadow: 0 0 120px rgba(0, 0, 0, .25);
+            font-family: 'neo', sans-serif;
+        }
+
+        /* structure end */
+
+        /* login_img start */
+        #login_img {
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(45deg, #221334, #6c3049);
+            float: left;
+            position: relative;
+        }
+
+        #login_img div {
+            position: absolute;
+        }
+
+        #login_img .circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #df5555, #ef907a);
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+        }
+
+        .circle div {
+            width: 150px;
+            height: 40px;
+            border-radius: 50px;
+            position: absolute;
+        }
+
+        .circle div:nth-child(1) {
+            top: 30px;
+            left: -38px;
+            background: #c55c59;
+        }
+
+        .circle div:nth-child(2) {
+            bottom: 20px;
+            right: -35px;
+            background: #934555;
+        }
+
+        #login_img .star div {
+            background: radial-gradient(#fff 10%, #fff 20%, rgba(72, 34, 64, 0));
+            border-radius: 50%;
+            box-shadow: 0 0 7px #fff;
+        }
+
+        .star div:nth-child(1) {
+            width: 15px;
+            height: 15px;
+            top: 50px;
+            left: 30px;
+        }
+
+        .star div:nth-child(2) {
+            width: 10px;
+            height: 10px;
+            left: 360px;
+            top: 80px;
+        }
+
+        .star div:nth-child(3) {
+            width: 5px;
+            height: 5px;
+            top: 400px;
+            left: 80px;
+        }
+
+        .star div:nth-child(4) {
+            width: 8px;
+            height: 8px;
+            top: 240px;
+            left: 60px;
+        }
+
+        .star div:nth-child(5) {
+            width: 4px;
+            height: 4px;
+            top: 20px;
+            left: 200px;
+        }
+
+        .star div:nth-child(6) {
+            width: 4px;
+            height: 4px;
+            top: 460px;
+            left: 410px;
+        }
+
+        .star div:nth-child(7) {
+            width: 6px;
+            height: 6px;
+            top: 250px;
+            left: 350px;
+        }
+
+        #login_img .fly_star div {
+            width: 90px;
+            height: 3px;
+            background: linear-gradient(to right, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0));
+            transform: rotateZ(-45deg);
+        }
+
+        .fly_star div:nth-child(1) {
+            top: 60px;
+            left: 80px;
+        }
+
+        .fly_star div:nth-child(2) {
+            top: 210px;
+            left: 332px;
+            opacity: .6;
+        }
+
+        #login_img p {
+            text-align: center;
+            color: #af4b55;
+            font-weight: 600;
+            margin-top: 365px;
+            font-size: 25px;
+        }
+
+        /* login_img end */
+
+        /* login start */
+        #login {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            float: right;
+            background-image: linear-gradient(45deg, #9a444e, #e06267);
+        }
+
+        #login #status {
+            width: 90px;
+            height: 35px;
+            margin: 40px auto;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #login #status span {
+            position: absolute;
+            transition: .5s;
+        }
+
+        #login a {
+            color: #fff;
+            display: block;
+            margin-top: 80px;
+            font-size: 18px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .form input {
+            width: 300px;
+            height: 30px;
+            font-size: 18px;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form input::placeholder {
+            color: rgba(255, 255, 255, .8);
+            font-size: 18px;
+            font-family: 'neo';
+        }
+
+        .confirm {
+            height: 0;
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        /* login end */
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="bg">
+            <div id="login_wrap">
+                <div id="login_img">
+                    <div class="circle">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="star">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="fly_star">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <p id="title">CLOUD</p>
+                </div>
+
+                <div id="login">
+                    <div id="status">
+                        <span style="top:0">Log</span>
+                        <span style="top:35px">Sign</span>
+                        <span style="right:5px">in</span>
+                    </div>
+                    <div>
+                        <form action="post">
+                            <div class="form">
+                                <input type="text" name="" id="uname" placeholder="username">
+                            </div>
+                            <div class="form">
+                                <input type="password" name="" id="pwd" placeholder="password">
+                            </div>
+                            <div class="form confirm">
+                                <input type="password" name="" id="confirm-pwd" placeholder="confirm password">
+                            </div>
+                            <input type="button" value="Log in" class="btn" onclick="login()">
+                            <input type="button" value="Sign in" class="btn" onclick="signin()" id="btn">
+                        </form>
+                        <a href="#">Forget your password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

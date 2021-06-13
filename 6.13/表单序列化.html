@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#" method="post" id="exampleForm">
+        <input type="text" name="uname" id=""><br>
+        <input type="password" name="pwd" id=""><br>
+        <input type="radio" name="en" id="" value="a">a<br>
+        <input type="radio" name="en" id="" value="b">b<br>
+        <select name="sels" id="" multiple>
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+            <option value="d">d</option>
+            <option value="e">e</option>
+        </select>
+        <input type="button" value="Click" onclick="clg()">
+    </form>
+    <script>
+        let oForm = document.getElementById('exampleForm');
+
+        function serialize(form) {
+            let parts = [];
+            let optValue;
+            for (const field of form.elements) {
+                // form.elements 获取form下的所有表单控件
+                switch (field.type) {
+                    case "select-one":
+                        // HTMLSelectElement 单选
+                    case "select-multiple":
+                        // HTMLSelectElement 多选
+                        if (field.name.length) {
+                            for (let option of field.options) {
+                                if (option.selected) {
+                                    if (option.hasAttribute) {
+                                        optValue = (option.hasAttribute('value') ? option.value : option.text);
+                                    } else {
+                                        optValue = (option.attributes['value'].specified ? option.value : option.text);
+                                    }
+                                    parts.push(encodeURIComponent(field.name) + "=" + encodeURIComponent(optValue));
+                                }
+                            }
+                        }
+                        break;
+                    case undefined: // 字段集
+                    case "file": // 文件输入
+                    case "submit": // 提交按钮
+                    case "reset": // 重置按钮
+                    case "button": // 自定义按钮
+                        break;
+                    case "radio": // 单选按钮
+                    case "checkbox": // 复选框
+                        if (!field.checked) {
+                            break;
+                        }
+                        default:
+                            // 不包含没有名字的表单字段
+                            if (field.name.length) {
+                                parts.push(`${encodeURIComponent(field.name)}=${encodeURIComponent(field.value)}`);
+                            }
+                }
+            }
+            return parts.join("&");
+        }
+
+        function clg() {
+            console.log(serialize(oForm));
+        }
+    </script>
+</body>
+
+</html>

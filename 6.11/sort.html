@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        #container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #container1 {
+            position: absolute;
+            width: 800px;
+            height: 50px;
+            border: 1px solid black;
+            top: 50px;
+            left: 50px;
+        }
+
+        #container span {
+            width: auto;
+            height: auto;
+        }
+
+        #container1 p {
+            text-align: center;
+            letter-spacing: 100px;
+            text-indent: 100px;
+        }
+
+        #container2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            top: 500px;
+            left: 500px;
+        }
+
+        #container2 span {
+            position: absolute;
+        }
+
+        #container2 span:nth-of-type(1) {
+            left: 15px;
+        }
+
+        #container2 span:nth-of-type(2) {
+            right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="container1">
+            <p><span>CLOUD</span></p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="container2">
+        <span>Lorem, ipsum.</span>
+        <span>Lorem.</span>
+    </div>
+    <script>
+        // let arr = [3, 5, 8, 9, 24, 12, 56, 33];
+        // arr.sort(function (val1, val2) {
+        //     return val1 - val2;
+        // });
+        // console.log(arr);
+
+        // position:absolute;的子元素的宽高还能继承的？
+    </script>
+</body>
+
+</html>
