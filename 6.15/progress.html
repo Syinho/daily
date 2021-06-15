@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                // 接收成功
+            } else {
+                // 接收失败
+            }
+        };
+
+        xhr.onprogress = function (ev) {
+            let divStatus = document.getElementById('status');
+            if (ev.lengthComputable) {
+                divStatus.innerHTML = ev.position / ev.totalSize;
+            }
+        };
+
+        xhr.open('get', 'example.php', true);
+        xhr.send(null);
+    </script>
+</body>
+
+</html>

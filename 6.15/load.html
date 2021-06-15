@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            // 无论返回的状态码是多少 ，都会触发load事件， 也因此需要检查状态码。
+            // load事件处理器接收一个event， 其中 event.target 指向 XMLHTTRequest 实例，可以通过它访问xhr的方法和属性，但是它的兼容性不好。
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                // 接收成功
+            } else {
+                // 接收失败
+            }
+        }
+
+        xhr.open('post', 'example.php', true);
+        xhr.send(FormData(document.forms[0]));
+    </script>
+</body>
+
+</html>

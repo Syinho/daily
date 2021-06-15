@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#" method="post" id="form1">
+        <label for="uname">
+            <input type="text" id="uname" name="uname">
+        </label>
+        <label for="pwd">
+            <input type="password" name="pwd" id="pwd">
+        </label>
+        <select name="sel" id="" multiple>
+            <option value="a">a</option>
+            <option value="b">b</option>
+            <option value="c">c</option>
+            <option value="d">d</option>
+            <option value="e">e</option>
+            <option value="f">f</option>
+        </select>
+        <label for="man">man:
+            <input type="radio" name="sex" id="man">
+        </label>
+        <label for="woman">woman:
+            <input type="radio" name="sex" id="woman">
+        </label>
+        <input type="button" value="Click" id="btn">
+    </form>
+    <script>
+        let oForm = document.forms[0];
+
+        document.getElementById('btn').onclick = function () {
+            let res = serialize(oForm);
+            console.log(res);
+
+        }
+
+
+        function serialize(form) {
+            let optValue;
+            let res = [];
+            // 使用数组储存数据，方便使用 & 分隔
+            for (const el of form.elements) {
+                switch (el.type) {
+                    case "select-one":
+                    case "select-multiple":
+                        if (el.name.length) {
+                            // 如果下拉列表框name属性有设定值的话
+                            for (let option of el.options) {
+                                // 迭代 <option> 标签
+                                if (option.selected) {
+                                    if (option.hasAttribute) {
+                                        optValue = (option.hasAttribute('value') ? option.value : option.text);
+                                    } else {
+                                        optValue = (option.attributes['value'].specified ? option.value : option.text);
+                                    }
+                                    res.push(`${encodeURIComponent(el.name)}=${encodeURIComponent(optValue)}`)
+                                }
+                            }
+                        }
+                        break;
+                    case undefined:
+                    case "file":
+                    case "submit":
+                    case "reset":
+                    case "button":
+                        break;
+
+                    case "radio":
+                    case "checkbox":
+                        if (!el.checked) {
+                            break;
+                        }
+                        default:
+                            if (el.name.length) {
+                                res.push(`${encodeURIComponent(el.name)}=${encodeURIComponent(el.value)}`);
+                            }
+                }
+            }
+            return res.join("&");
+        }
+    </script>
+</body>
+
+</html>

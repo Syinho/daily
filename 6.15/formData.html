@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                try {
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                        // xhr.responseText
+                    } else {
+                        // alert(xhr.status);
+                    }
+                } catch (error) {
+                    // 当 timeout 时限到达但是请求没有返回，则触发ontimeout 事件处理程序。
+                    // 此时readyState变为4，但是超时后访问 status 会发生错误，建议放在 try...catch 中
+                    // 调用则说明
+                }
+            }
+        }
+
+        xhr.open("get", "timeout.php", true);
+        xhr.timeout = 1000;
+        xhr.ontimeout = function () {
+            // 
+        };
+        xhr.send(null);
+
+        // xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+        // xhr.send(serialize(document.forms[0]));
+        // xhr.open('post', 'example.php', true);
+        // let data = new FormData();
+        // data.append('name', 'Nicholas');
+        // xhr.send(FormData(document.forms[0]));
+
+        xhr.ontimeout
+    </script>
+</body>
+
+</html>
