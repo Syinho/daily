@@ -10,15 +10,6 @@
 
 <body>
     <script>
-        let person = {
-            name: "Nicholas",
-            age: 29,
-            school: {
-                name: "Thonfield College",
-                location: "Moscow"
-            }
-        };
-
         // let jsonStr = JSON.stringify(person);
         // console.log(jsonStr);
         // //{"name":"Nicholas","age":29,"school":{"name":"Thonfield College","location":"Moscow"}}
@@ -28,6 +19,55 @@
 
         // let jsonStr = JSON.stringify(person, ['name', 'age']);
         // console.log(jsonStr); //{"name":"Nicholas","age":29}
+
+
+        let person = {
+            name: "Nicholas",
+            age: 29,
+            hobby: ['tennis', 'football', 'basketball'],
+            id: 'bj115624',
+            toJSON: function () {
+                return this.id;
+            }
+        };
+
+        // let jsonStr = JSON.stringify(person);
+        // console.log(jsonStr); // "bj115624"
+
+        let jsonStr = JSON.stringify(person, ['name', 'age']);
+        console.log(jsonStr);
+
+
+
+
+
+
+
+        // let jsonStr = JSON.stringify(person, ['name', 'age'], "--");
+        // console.log(jsonStr);
+        // // {
+        // // --"name": "Nicholas",
+        // // --"age": 29
+        // // }
+
+        // let jsonStr2 = JSON.stringify(person, ['name', 'age'], 4);
+        // console.log(jsonStr2);
+
+
+
+        // let jsonStr = JSON.stringify(person, (key, value) => {
+        //     switch (key) {
+        //         case "name":
+        //             return 'sir ' + value;
+        //             break;
+        //         case "hobby":
+        //             return value.join('|');
+        //             break;
+        //         default:
+        //             return value;
+        //     }
+        // });
+        // console.log(jsonStr); // {"name":"sir Nicholas","age":29,"hobby":"tennis|football|basketball"}
     </script>
 </body>
 
