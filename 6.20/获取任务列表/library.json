@@ -1,0 +1,15 @@
+{
+    "books": [{
+        "id": "002",
+        "name": "nodejs",
+        "version": 2007
+    }, {
+        "id": "016",
+        "name": "webpack",
+        "version": 2015
+    }, {
+        "id": "666",
+        "name": "git",
+        "version": 2009
+    }]
+}
