@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" name="" id="file1">
+    <div id="result"></div>
+    <script>
+        const oFile = document.querySelector('#file1');
+        oFile.addEventListener('change', function (e) {
+            alert('change');
+            let reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0]);
+            reader.onload = function () {
+                document.getElementById('result').innerHTML = reader.result;
+            }
+        }, false);
+    </script>
+</body>
+
+</html>

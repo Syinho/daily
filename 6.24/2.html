@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid black;
+            background-color: palegreen;
+        }
+
+        td,
+        th {
+            border: 1px dashed royalblue;
+            /* background-color: palevioletred; */
+        }
+    </style>
+</head>
+
+<body>
+    <table cellspacing='50px'>
+        <caption>table 1</caption>
+        <colgroup>
+            <col style="background-color: red;">
+            <col span="2" style="background-color: blue;">
+            <col span="2" style="width: 300px;background-color: yellow;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>a</th>
+                <th>b</th>
+                <th>c</th>
+                <th>d</th>
+                <th>e</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <td colspan="5" style="text-align: center;">Lorem, ipsum.</td>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>Lorem.</td>
+                <td>Lorem.</td>
+                <td>Lorem.</td>
+                <td>Lorem.</td>
+                <td>Lorem.</td>
+            </tr>
+            <tr>
+                <td>Lorem.</td>
+                <td>Lorem.</td>
+                <td>Lorem.</td>
+                <td>Lorem.</td>
+                <td>Lorem.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

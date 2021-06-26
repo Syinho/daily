@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td:hover {
+            cursor: pointer;
+        }
+
+        td {
+            transition: .5s;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let oTable = document.createElement('table');
+        oTable.style.borderCollapse = 'collapse';
+        oTable.cellPadding = '20px';
+        oTable.style.border = '1px solid black';
+        let oTableCaption = oTable.createCaption();
+        oTableCaption.innerHTML = 'TABLE 1';
+        let oTableHead = oTable.createTHead();
+        let oTableHeadRow = oTableHead.insertRow(0);
+        for (let i = 0; i < 5; i++) {
+            let oCell = oTableHeadRow.insertCell(i);
+            oCell.innerHTML = `HEAD: ${i}`;
+            oCell.style = "border:3px solid black;background-color:grey;color:orange;";
+        }
+        let oTableFoot = oTable.createTFoot();
+        let oTableFootTr = oTableFoot.insertRow(0);
+        let oTableFootTrTd = oTableFootTr.insertCell(0);
+        oTableFootTrTd.colSpan = 5;
+        oTableFootTrTd.innerHTML = `tFoot Table`;
+        oTableFootTrTd.style = 'text-align:center;';
+        document.body.appendChild(oTable);
+        let oBody = oTable.createTBody();
+        for (let i = 0; i < 7; i++) {
+            let oTr = oBody.insertRow(i);
+            for (let j = 0; j < 5; j++) {
+                let oTd = oTr.insertCell(j);
+                oTd.style = "border:1px solid black;text-align:center;";
+                oTd.innerHTML = `td : ${i}:${j}`;
+            }
+        }
+        let aTd = oTable.querySelectorAll('td');
+        for (let i = 0; i < aTd.length; i++) {
+            aTd[i].addEventListener('mouseover', function (e) {
+                e.target.style = 'background-color:black;color:white;';
+            }, false);
+            aTd[i].addEventListener('mouseleave', function (e) {
+                e.target.style = 'background-color:white;color:black;';
+            })
+        }
+    </script>
+</body>
+
+</html>

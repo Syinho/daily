@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="txt"><br>
+    是否以localStorage存储：<input type="checkbox" name="" id=""><br>
+    <input type="button" value="储存信息" onclick="load()">
+    <input type="button" value="删除信息" onclick="rm()">
+    <input type="button" value="读取信息" onclick="read()">
+    <script>
+        let text = document.querySelector('#txt');
+        let chkbox = document.querySelector('input[type=checkbox]');
+
+        let load = function () {
+            let storage = chkbox.checked ? localStorage : sessionStorage;
+            console.log(storage);
+            console.log(window.sessionStorage);
+
+
+            storage.setItem('msg', text.value);
+        }
+
+        let read = function () {
+            let storage = chkbox.checked ? localStorage : sessionStorage;
+            text.value = storage.getItem('msg');
+        }
+
+        let rm = function () {
+            if (localStorage.length > 0) {
+                localStorage.clear();
+            }
+        }
+    </script>
+</body>
+
+</html>

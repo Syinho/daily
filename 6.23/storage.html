@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="input"><br>
+    使用Local Storage 保存或读取：<input type="checkbox" name="" id="local"><br>
+    <div id="show"></div>
+    <input type="button" value="保存数据" onclick="saveStorage()">
+    <input type="button" value="读取数据" onclick="loadStorage()">
+    <input type="button" value="删除数据" onclick="rmStorage()">
+    <script>
+        let saveStorage = function () {
+            let checked = document.querySelector('#local').checked;
+            let storage = checked ? localStorage : sessionStorage;
+            let target = document.getElementById('input');
+            storage['message'] = target.value;
+        }
+
+        let loadStorage = function () {
+            let checked = document.querySelector('#local').checked;
+            let storage = checked ? localStorage : sessionStorage;
+            let target = document.getElementById('show');
+            target.innerHTML = storage['message'];
+        }
+
+        let rmStorage = function () {
+            if (localStorage.length > 0) {
+                for (let i = 0; i < localStorage.length; i++) {
+                    let key = localStorage.key(i);
+                    localStorage.removeItem(key);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" name="" id="imgs" accept="image/*" multiple>
+    <input type="button" value="显示文件">
+    <script>
+        let imgEle = document.getElementById('imgs');
+        let showDetails = function () {
+            let fileList = imgEle.files;
+            let div;
+            for (let i = 0; i < fileList.length; i++) {
+                let file = fileList[i];
+                div = document.createElement('div');
+                div.innerHTML = `第${i+1}个文件的文件名是${file.name},该文件类型是${file.type},该文件大小是${file.size};`
+                document.body.appendChild(div);
+            }
+        }
+        imgEle.addEventListener('click', showDetails, false);
+    </script>
+</body>
+
+</html>

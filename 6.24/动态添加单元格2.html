@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let oTable = document.createElement('table');
+        oTable.style.border = "1px solid black";
+        oTable.style.borderCollapse = 'collapse';
+        oTable.cellPadding = '15px';
+        // oTable.style.borderSpacing = "20px";
+        oTable.createCaption().innerHTML = 'TABLE 1';
+        let oThead = oTable.createTHead();
+        let oTheadRow = oThead.insertRow();
+        for (let i = 0; i < 7; i++) {
+            let oCell = oTheadRow.insertCell(i);
+            oCell.innerHTML = `HEAD:${i}`;
+        }
+
+        let oTbody = oTable.createTBody();
+        for (let i = 0; i < 5; i++) {
+            let oTbodyRow = oTbody.insertRow(i);
+            for (let j = 0; j < 7; j++) {
+                let oTbodyCell = oTbodyRow.insertCell(j);
+                oTbodyCell.innerHTML = `cellContent:${i},${j}`;
+            }
+        }
+
+        let oTfoot = oTable.createTFoot();
+        let oTfootRow = oTfoot.insertRow();
+        let oTfootCell = oTfootRow.insertCell();
+        oTfootCell.colSpan = '7';
+
+        oTfootCell.innerHTML = 'table cover';
+        oTfootCell.style.textAlign = 'center';
+        document.body.appendChild(oTable);
+    </script>
+</body>
+
+</html>
