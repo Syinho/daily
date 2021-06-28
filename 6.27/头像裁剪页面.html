@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'neo';
+            src: url('../font/Neo/NEOTERICc.ttf');
+        }
+
+        @font-face {
+            font-family: 'bamboo';
+            src: url('../font/三级竹节简体/三极竹节简体.ttf');
+        }
+
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            font-family: 'neo', serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            position: relative;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        #main {
+            width: 1100px;
+            height: 520px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 3px dashed black;
+            border-radius: 50px;
+            box-sizing: content-box;
+        }
+
+        #leftArea {
+            width: 40%;
+            height: 480px;
+            position: absolute;
+            top: 20px;
+            left: 0;
+        }
+
+        #calibration {
+            width: 80%;
+            height: 80%;
+            position: absolute;
+            top: 20px;
+            right: 0;
+            background-color: #fff;
+            background-image: linear-gradient(to right, lightslategray 1px, transparent 1px), linear-gradient(to bottom, lightslategray 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        #separate {
+            width: 2px;
+            height: 480px;
+            background-color: #000;
+            display: block;
+            position: absolute;
+            top: 20px;
+            left: 549px;
+        }
+
+        #rightArea {
+            width: 40%;
+            height: 480px;
+            position: absolute;
+            top: 20px;
+            right: 0;
+        }
+
+        #changePortrait {
+            width: 200px;
+            height: 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 20px;
+            border: 1px solid black;
+            background-color: rgb(243, 233, 233);
+            color: #000;
+            transition: .5s;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            overflow: hidden;
+            text-align: center;
+            line-height: 50px;
+            outline: none;
+        }
+
+        #changePortrait:hover {
+            box-shadow: 0 0 5px rgba(0, 0, 0, .8);
+        }
+
+        #changePortrait>input[type='file'] {
+            width: 0;
+            height: 0;
+            opacity: 0;
+        }
+
+        #portrait {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            bottom: 0;
+            left: 0;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        #type {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            right: 200px;
+        }
+
+        #err {
+            box-sizing: content-box;
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'neo', serif;
+            background-color: rgb(182, 51, 51);
+            text-align: center;
+            overflow: hidden;
+            color: rgb(228, 216, 216);
+            border: 3px solid rgba(255, 255, 255, .5);
+            border-radius: 20px;
+            transition: 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="leftArea">
+            <img src="" alt="" class="mianImg">
+            <div id="calibration"></div>
+        </div>
+        <span id="separate"></span>
+        <div id="rightArea">
+            <button id="changePortrait">CHOICE PORTRAIT
+                <input type="file" name="" id="file1">
+            </button>
+            <div id="portrait"></div>
+            <span id="type" style="font-family: 'bamboo',serif;">200*200</span>
+        </div>
+    </div>
+    <div id="err"></div>
+    <script>
+        window.onload = function () {
+            let oPortrait = document.querySelector('#portrait');
+            let oBtn = document.getElementById('changePortrait');
+            let oFile = document.querySelector('input[type="file"]');
+            let oErr = document.querySelector('#err');
+
+            chkPortrait();
+            addEvt();
+
+            function chkPortrait() {
+                let hasPortrait = Boolean(oPortrait.style.backgroundImage);
+                console.log(oPortrait.style.backgroundImage);
+
+                if (hasPortrait) {
+                    oPortrait.style.border = 0;
+                    console.log('有头像');
+                } else {
+                    oPortrait.style.border = '1px solid black';
+                    oPortrait.style.backgroundColor = "white";
+                    console.log('无头像');
+
+                }
+            }
+
+
+            function changePortrait(e) {
+                // let evt = document.createEvent('MouseEvents');
+                let evt = new MouseEvent('click');
+                oFile.dispatchEvent(evt);
+            }
+
+            function readFile() {
+                let p = new Promise(function (resolve, reject) {
+                    let reader = null;
+                    if (FileReader) {
+                        reader = new FileReader();
+                        if (oFile.files.length > 0) {
+                            let file = oFile.files[0];
+                            if (/image\/\w+/.test(file.type)) {
+                                reader.readAsDataURL(file);
+                                reader.onload = function () {
+                                    resolve(reader.result);
+                                }
+                            } else {
+                                reject('你选中的文件MIME格式不符合');
+                            }
+                        } else {
+                            reject('你未选中任何文件');
+                        }
+                    } else {
+                        reject('你的浏览器版本太低无法使用FileReader对象');
+                    }
+                });
+                return p;
+            }
+
+            function display() {
+                readFile().then(function (data) {
+                    oPortrait.style.backgroundImage = `url(${data})`;
+                    chkPortrait();
+                }, function (reason) {
+                    oErr.innerHTML = reason;
+                    oErr.style.top = '60px';
+                    oErr.addEventListener('transitionend', function (e) {
+                        setTimeout(() => {
+                            e.target.style.top = '-60px';
+                        }, 1000);
+                    }, false);
+                });
+            }
+
+            function addEvt() {
+                oBtn.addEventListener('click', changePortrait, false);
+                oFile.addEventListener('change', display, false);
+            }
+        }
+    </script>
+</body>
+
+</html>

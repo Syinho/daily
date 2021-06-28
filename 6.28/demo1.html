@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        #demo1 {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            background: white;
+            background-image: linear-gradient(to right, transparent 99%, black 99%), linear-gradient(to bottom, transparent 99%, black 99%);
+            background-size: 10px 10px;
+        }
+
+        #demo2 {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            background: white;
+            background-image: linear-gradient(to bottom, black 1px, transparent 1px), linear-gradient(to right, black 1px, transparent 1px);
+
+            background-size: 50px 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="demo1"></div>
+    <div id="demo2"></div>
+</body>
+
+</html>

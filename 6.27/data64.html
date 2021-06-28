@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #show {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" name="" id="" accept="image/*">
+    <div id="show"></div>
+    <script>
+        const oFile = document.querySelector('input[type="file"]');
+        const oShow = document.querySelector('#show');
+        oFile.addEventListener('change', function (e) {
+            let reader = new FileReader();
+            reader.readAsDataURL(oFile.files[0]);
+            reader.onload = function () {
+                console.log(reader.result);
+
+                oShow.style.backgroundImage = 'url(' + reader.result + ')';
+            }
+        }, false);
+    </script>
+</body>
+
+</html>

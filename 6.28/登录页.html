@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* reset start */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            font-family: 'neo', serif;
+        }
+
+        @font-face {
+            font-family: 'neo';
+            src: url('../font/Neo/NEOTERICc.ttf');
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* reset end */
+        #main {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(45deg, #211136, #bf5853);
+            position: relative;
+        }
+
+        #container {
+            width: 980px;
+            height: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            box-shadow: 0 0 120px rgba(0, 0, 0, .25);
+            overflow: hidden;
+        }
+
+        #leftArea {
+            position: relative;
+            float: left;
+            width: 50%;
+            height: 100%;
+            background-image: linear-gradient(45deg, #221334, #6c3049);
+            overflow: hidden;
+        }
+
+        #moon {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-image: linear-gradient(45deg, #df5555, #ef907a);
+            top: 70px;
+            left: 50%;
+            margin-left: -100px;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            width: 150px;
+            height: 40px;
+            border-radius: 50px;
+        }
+
+        .cloud:nth-of-type(1) {
+            top: 30px;
+            left: -38px;
+            background-color: #c55c59;
+        }
+
+        .cloud:nth-of-type(2) {
+            bottom: 20px;
+            right: -35px;
+            background-color: #934555;
+        }
+
+        .flyStar {
+            position: absolute;
+            width: 90px;
+            height: 3px;
+            background-image: linear-gradient(90deg, rgba(255, 255, 255, .67), rgba(255, 255, 255, 0));
+            transform: rotateZ(-45deg);
+        }
+
+        .star {
+            position: absolute;
+            background-image: radial-gradient(#fff 10%, #fff 20%, rgba(72, 34, 64, 0));
+            box-shadow: 0 0 7px #fff;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        #text {
+            position: absolute;
+            top: 365px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'neo', serif;
+            color: #af4b55;
+            font-weight: 600;
+            font-size: 25px;
+            letter-spacing: 45px;
+            text-indent: 45px;
+        }
+
+        #rightArea {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            float: right;
+            background-image: linear-gradient(45deg, #9a444e, #e06267);
+        }
+
+        #status {
+            position: relative;
+            width: 100px;
+            height: 35px;
+            margin: 40px auto 0 auto;
+            overflow: hidden;
+        }
+
+        #status>div {
+            position: absolute;
+            font-size: 30px;
+            font-weight: 600;
+            color: white;
+            transition: .25s;
+        }
+
+        #status>div:nth-of-type(1) {
+            top: 0;
+            left: 0;
+        }
+
+        #status>div:nth-of-type(2) {
+            top: 0;
+            right: 0;
+        }
+
+        #status>div:nth-of-type(3) {
+            top: 35px;
+            left: 0;
+        }
+
+        #type {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            margin-top: -140px;
+            transform: translateX(-50%);
+        }
+
+        form {
+            display: block;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        input[type='text'],
+        input[type='password'] {
+            position: relative;
+            width: 300px;
+            height: 30px;
+            border: 0;
+            border-bottom: 1px solid white;
+            background-color: transparent;
+            /* outline: none; */
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #confirmBox {
+            height: 0;
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        input::placeholder {
+            color: white;
+            font-size: 18px;
+        }
+
+        #btn {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            /* 因为上面的元素有margin-bottom所以不会造成上边距溢出 */
+        }
+
+        input[type='button'] {
+            width: 140px;
+            height: 40px;
+            border: 1px solid #fff;
+            text-align: center;
+            background: none;
+            font-size: 20px;
+            color: #fff;
+            transition: .25s;
+            cursor: pointer;
+            margin-top: 25px;
+        }
+
+        input[type='button']:hover {
+            background: rgba(255, 255, 255, .25);
+        }
+
+        a {
+            display: block;
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        @media screen and (max-width:1000px) {
+            #leftArea {
+                display: none;
+            }
+
+            #container {
+                width: 490px;
+            }
+
+            #rightArea {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width:560px) {
+            #container {
+                width: 330px;
+            }
+
+            input[type='text'],
+            input[type='password'] {
+                width: 250px;
+            }
+
+            input[type='button'] {
+                width: 113px;
+            }
+        }
+
+        @media screen and (max-width:345px) {
+            #container {
+                width: 290px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="container">
+            <div id="leftArea">
+                <div id="moon">
+                    <span class="cloud"></span>
+                    <span class="cloud"></span>
+                </div>
+                <div class="flyStar"></div>
+                <div class="flyStar"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div id="text">CLOUD</div>
+            </div>
+            <div id="rightArea">
+                <div id="status">
+                    <div>LOG</div>
+                    <div>IN</div>
+                    <div>SIGN</div>
+                    <!-- log in 登录 ; log on 注册 -->
+                </div>
+                <div id="type">
+                    <form action="#" method="post" id="form">
+                        <input type="text" name="uname" id="uname" placeholder="USERNAME" accesskey="u"
+                            title="按下alt+n快速激活该输入框" tabindex="1">
+                        <input type="password" name="pwd" id="pwd" placeholder="PASSWORD" accesskey="p"
+                            title="按下alt+p快速激活该输入框" tabindex="2">
+                        <div id="confirmBox">
+                            <input type="password" name="confirm" id="confirm" placeholder="CONFIRM PASSWORD"
+                                accesskey="c" title="按下alt+c快速激活该输入框" tabindex="3" disabled>
+                        </div>
+                        <div id="btn">
+                            <input type="button" value="LOG IN" id="login">
+                            <input type="button" value="SIGN IN" id="signin">
+                        </div>
+                        <a href="#">FORGET YOUR PASSWORD?</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+
+            let oForm = document.forms[0];
+            let oUname = document.querySelector('#uname');
+            let oPwd = document.querySelector('#pwd');
+            let oConfirm = document.querySelector('#confirm');
+            let valid = true;
+
+            randomPos();
+            btnClick();
+
+            function randomPos() {
+                let aFlyStar = document.querySelectorAll('.flyStar');
+                let aStar = document.querySelectorAll('.star');
+                let left = function () {
+                    return Math.floor(Math.random() * 400 + 50);
+                    // [50,450)
+                };
+                let top = function () {
+                    return Math.floor(Math.random() * 400 + 50);
+                    // [50,450)
+                };
+                let radius = function () {
+                    return Math.floor(Math.random() * 10 + 5);
+                    // [5,10)
+                }
+                for (let i = 0; i < aFlyStar.length; i++) {
+                    aFlyStar[i].style.left = left() + 'px';
+                    aFlyStar[i].style.top = top() + 'px';
+                };
+                for (let i = 0; i < aStar.length; i++) {
+                    aStar[i].style.left = left() + 'px';
+                    aStar[i].style.top = top() + 'px';
+                    aStar[i].style.width = aStar[i].style.height = radius() + 'px';
+                };
+            }
+
+            function btnClick() {
+                let oStatus = document.querySelector('#status');
+                let sta_log = oStatus.getElementsByTagName('div')[0];
+                let sta_sign = oStatus.getElementsByTagName('div')[2];
+                let oConfirmBox = document.getElementById('confirmBox');
+                let oLog = document.querySelector('input[value~="LOG"]');
+                let oSign = document.querySelector('input[value~="SIGN"]');
+
+                oLog.addEventListener('click', (e) => {
+                    if (valid) {
+                        // 进行 XMLHttpRequest 等一系列操作
+
+                    } else {
+                        oConfirmBox.style.height = 0;
+                        sta_log.style.top = 0;
+                        sta_sign.style.top = '35px';
+                        valid = true;
+                    }
+                }, false);
+
+                oSign.addEventListener('click', (e) => {
+                    if (valid) {
+                        oConfirmBox.style.height = '51px';
+                        sta_log.style.top = '35px';
+                        sta_sign.style.top = 0;
+                        oConfirm.removeAttribute('disabled');
+                        valid = false;
+                    } else {
+                        // 进行XMLHttpRequest 等一系列操作
+                    }
+                }, false);
+            }
+        }
+    </script>
+</body>
+
+</html>
